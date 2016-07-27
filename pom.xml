@@ -174,12 +174,12 @@
 				<artifactId>commons-codec</artifactId>
 				<version>1.10</version>
 			</dependency>
-			<!-- 加密算法包 -->
+			<!-- 加密算法包 
 			<dependency>
 				<groupId>org.bouncycastle</groupId>
 				<artifactId>bcprov-jdk15on</artifactId>
 				<version>1.53</version>
-			</dependency>
+			</dependency>-->
 
 			<dependency>
 				<groupId>org.aspectj</groupId>

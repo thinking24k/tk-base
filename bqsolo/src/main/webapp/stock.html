@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Stock</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="宋民国gif表情包,老子无所畏惧表情包,薛之谦神经病表情包,尼克扬表情包,李云龙表情包,乖巧表情包,调味表情包,认真脸表情包,各种可爱的表情图片,萌表情包源氏表情包,朱碧池表情包,斗图专用表情包,暴走漫画骂人表情包,聊天把妹调戏表情包" />
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--webfont-->
+<link href='http://fonts.useso.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+<style>
+#waterfall{ text-align:center; width:100%; margin:0 auto;}
+#waterfall img{ width:203px;}
+#waterfall .cell{ padding:10px 0px 5px 0px; width:223px;border:1px solid #E3E3E3; background:#fff; margin-top:20px;box-shadow: 0px 2px 3px 1px #ccc;}
+#waterfall .cell:hover{box-shadow: 0px 2px 3px 1px #999;}
+</style>
+
+<script type="text/javascript" src="plugins/jquery-1.11.1.min.js"></script>
+<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+<script src="plugins/waterfall.js" type="text/javascript"></script>
+<script type="text/javascript">
+	    $(document).ready(function () {
+	        $('#horizontalTab').easyResponsiveTabs({
+	            type: 'default', //Types: default, vertical, accordion           
+	            width: 'auto', //auto or any width like 600px
+	            fit: true   // 100% fit in a container
+	        });
+			
+			var opt={
+				  getResource:function(index,render){//index为已加载次数,render为渲染接口函数,接受一个dom集合或jquery对象作为参数。通过ajax等异步方法得到的数据可以传入该接口进行渲染，如 render(elem)
+					  if(index>=7) index=index%7+1;
+					  var html='';
+					  for(var i=20*(index-1);i<20*(index-1)+20;i++){
+						 var k='';
+						 for(var ii=0;ii<3-i.toString().length;ii++){
+							k+='0';
+						 }
+						 k+=i;
+						 var src="http://cued.xunlei.com/demos/publ/img/P_"+k+".jpg";
+						 html+='<div class="cell"><a href="#"><img src="'+src+'" /></a><p>'+k+'</p></div>';
+					  }
+					  return $(html);
+				  },
+				  auto_imgHeight:true,
+				  insert_type:1
+				}
+				$('#waterfall').waterfall(opt);
+						
+	    });
+
+    </script>	
+<script src="js/menu_jquery.js"></script>    
+</head>
+<body>
+	<div class="header">	
+      <div class="container"> 
+  	     <div class="logo">
+			<h1><a href="index.html">表情搜罗</a></h1>
+		 </div>
+		 <div class="top_right">
+		   <ul>
+			<li><a href="register.html">Register</a></li>|
+			<li class="login" >
+				 <div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
+					  <div id="loginBox">                
+						  <form id="loginForm">
+			                <fieldset id="body">
+			                	<fieldset>
+			                          <label for="email">Email Address</label>
+			                          <input type="text" name="email" id="email">
+			                    </fieldset>
+			                    <fieldset>
+			                            <label for="password">Password</label>
+			                            <input type="password" name="password" id="password">
+			                     </fieldset>
+			                    <input type="submit" id="login" value="Sign in">
+			                	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
+			            	</fieldset>
+			                 <span><a href="#">Forgot your password?</a></span>
+						   </form>
+				        </div>
+			      </div>
+			  </li>
+		   </ul>
+	     </div>
+		 <div class="clearfix"></div>
+		</div>
+	</div>
+	<!--content-->
+	<div class="stock_box">
+	 <div class="col-md-2 stock_left" >
+	   <div class="w_sidebar" ><!--style="position: fixed;bottom: 35%;"-->
+		<!--<section class="sky-form">
+		   <h4>分组</h4>
+			 <div class="col col-4">
+				<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All images</label>
+			 </div><div class="col col-4">
+			    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Standard</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Following</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Lorem Ipsum</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Injected humour</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Default model </label>
+			</div>
+		</section>-->
+		<section class="sky-form">
+			<h4>类别</h4>
+			<div class="col col-4">
+				<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Any time</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 months</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past month</label>
+			</div><div class="col col-4">
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past week</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 days</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Any time</label>
+			</div>
+		</section>
+		<section class="sky-form">
+			<h4>标签</h4>
+			<ul class="w_nav2">
+				<li><a class="color1" href="#"></a></li>
+				<li><a class="color2" href="#"></a></li>
+				<li><a class="color3" href="#"></a></li>
+				<li><a class="color4" href="#"></a></li>
+				<li><a class="color5" href="#"></a></li>
+				<li><a class="color6" href="#"></a></li>
+				<li><a class="color7" href="#"></a></li>
+				<li><a class="color8" href="#"></a></li>
+				<li><a class="color9" href="#"></a></li>
+				<li><a class="color10" href="#"></a></li>
+				<li><a class="color12" href="#"></a></li>
+				<li><a class="color13" href="#"></a></li>
+				<li><a class="color14" href="#"></a></li>
+				<li><a class="color15" href="#"></a></li>
+				<li><a class="color5" href="#"></a></li>
+				<li><a class="color6" href="#"></a></li>
+				<li><a class="color7" href="#"></a></li>
+				<li><a class="color8" href="#"></a></li>
+				<li><a class="color9" href="#"></a></li>
+				<li><a class="color10" href="#"></a></li>
+			</ul>
+		</section>
+		<!--<section class="sky-form">
+			<h4>discount</h4>
+			<div class="col col-4">
+				<label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
+				<label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
+				<label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
+			</div><div class="col col-4">
+				<label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
+				<label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
+				<label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
+			</div>						
+		</section>-->
+	   </div>
+      </div>
+	  <div class="col-md-10 sap_tabs">	
+	       <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+			  <ul class="resp-tabs-list">
+			  	  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>最热</span></li>
+				  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>最新</span></li>			 
+				  <div class="clearfix"></div>
+			  </ul>				  	 
+				<div class="resp-tabs-container">
+
+				<div id="waterfall" >
+					<div class="cell"><a href="#"><img src="images/01.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/02.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/03.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/04.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/05.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/06.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/07.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/08.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/09.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/10.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/11.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/12.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/13.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/14.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/15.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/16.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/17.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/18.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+					<div class="cell"><a href="#"><img src="images/19.jpg" /></a><p><a href="http://sc.chinaz.com/jiaoben/">AA</a></p></div>
+				</div>
+			     	        					 	        					 
+			  </div>	
+           </div>
+
+       </div>
+       <div class="clearfix"> </div>
+    </div>
+	<!--描述-->
+	<div class="grid_2">
+		<div class="container"> 
+			<div class="col-md-3 col_2">
+				<h3>Stock Photo<br>Categories</h3>
+			</div>
+			<div class="col-md-9 col_5">
+				<div class="col_1_of_5 span_1_of_5">
+					<ul class="list1">
+					    <li><a href="stock.html">Abstract</a></li>
+			            <li><a href="stock.html">Animals/Wildlife</a></li>
+			            <li><a href="stock.html">The Arts</a></li>
+			            <li><a href="stock.html">Backgrounds/Textures</a></li>
+			            <li><a href="stock.html">Beauty/Fashion</a></li>
+			            <li><a href="stock.html">Buildings/Landmarks</a></li>
+		            </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<ul class="list1">
+					    <li><a href="stock.html">Business/Finance</a></li>
+			            <li><a href="stock.html">Celebrities</a></li>
+			            <li><a href="stock.html">Editorial</a></li>
+			            <li><a href="stock.html">Education</a></li>
+			            <li><a href="stock.html">Food and Drink</a></li>
+			            <li><a href="stock.html">Healthcare/Medical</a></li>
+		            </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<ul class="list1">
+					    <li><a href="stock.html">Holidays</a></li>
+			            <li><a href="stock.html">Illustrations/Clip-Art</a></li>
+			            <li><a href="stock.html">Industrial</a></li>
+			            <li><a href="stock.html">Interiors</a></li>
+			            <li><a href="stock.html">Miscellaneous</a></li>
+			            <li><a href="stock.html">Model Released Only</a></li>
+		            </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<ul class="list1">
+					    <li><a href="stock.html">Nature</a></li>
+			            <li><a href="stock.html">Objects</a></li>
+			            <li><a href="stock.html">Parks/Outdoor</a></li>
+			            <li><a href="stock.html">People</a></li>
+			            <li><a href="stock.html">Religion</a></li>
+			            <li><a href="stock.html">Science</a></li>
+		            </ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!--页脚-->
+	<div class="grid_3">
+	  <div class="container">
+	  	 <ul id="footer-links">
+			<li><a href="#">Terms of Use</a></li>
+			<li><a href="#">Royalty Free License</a></li>
+			<li><a href="#">Extended License</a></li>
+			<li><a href="#">Privacy</a></li>
+			<li><a href="support.html">Support</a></li>
+			<li><a href="about.html">About Us</a></li>
+			<li><a href="faq.html">FAQ</a></li>
+			<li><a href="#">Categories</a></li>
+         </ul>
+         <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+	  </div>
+	</div>
+</body>
+</html>		
