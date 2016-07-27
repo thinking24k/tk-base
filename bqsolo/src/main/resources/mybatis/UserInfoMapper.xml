@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bqsolo.main.dao.UserInfoDao">
+
+	<select id="getByLoginName" resultType="com.bqsolo.main.entity.UserInfo" parameterType="java.lang.String">
+		select * from userinfo u where u.username =#{name}
+	</select>
+	<select id="getByLoginNameOrEmail" resultType="com.bqsolo.main.entity.UserInfo">
+		select * from userinfo u where u.username =#{name} or u.email =#{email}
+	</select>
+	<select id="getByEmail" resultType="com.bqsolo.main.entity.UserInfo" parameterType="java.lang.String">
+		select * from userinfo u where u.email =#{email}
+	</select>
+	<select id="getByPage" resultType="com.bqsolo.main.entity.UserInfo">
+		select * from userInfo LIMIT #{beginNumber},#{pageSize}
+	</select>
+	<select id="getCount" resultType="com.bqsolo.main.entity.UserInfo">
+		select count(*) from userInfo 
+	</select>
+	<update id="updateUserInfo" parameterType="com.bqsolo.main.entity.UserInfo">
+	    UPDATE userinfo SET username=#{username},password=#{password},email=#{email}gennder=#{gender},intro=#{intro},phone=#{phone},birthday=#{birthday},address=#{address}
+		score=#{score} where id=#{id}
+	</update>
+	<update id="updateUserPwd" >
+	     UPDATE userinfo SET password=#{password} where id=#{userId}
+	</update>
+	<insert id="save" parameterType="com.bqsolo.main.entity.UserInfo">
+	    INSERT INTO userinfo(username,nickname,`password`,email,gender,regIp,regTime,`status`)
+		VALUES(#{username},#{nickname},#{password},#{email},#{gender},#{regIp},#{regTime},#{status})
+	</insert>
+	<update id="updateUserLoginInfo" parameterType="com.bqsolo.main.entity.UserInfo">
+		INSERT INTO userinfo(lastIp,lastTime,loginCount)
+		VALUES(#{lastIp},#{lastTime},#{loginCount})
+		where id=#{id}
+	</update>	
+</mapper>
