@@ -28,9 +28,27 @@ import com.bqsolo.framework.domain.BaseEntity;
 @Table(name = "user")
 public class UserEntity extends BaseEntity implements Serializable {
 
-	private static final long serialVersionUID =  -8686294337833527006L;
+	private static final long serialVersionUID =  -8421548068249938394L;
 
 
+	public UserEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public UserEntity(Integer id, String nickname, String email, String mobile,
+			String password, String img, Double priority, Integer sex,
+			Integer logintime) {
+		super();
+		this.id = id;
+		this.nickname = nickname;
+		this.email = email;
+		this.mobile = mobile;
+		this.password = password;
+		this.img = img;
+		this.priority = priority;
+		this.sex = sex;
+		this.logintime = logintime;
+	}
 	//主键
 	@Id	
 	@GeneratedValue(strategy=GenerationType.AUTO)

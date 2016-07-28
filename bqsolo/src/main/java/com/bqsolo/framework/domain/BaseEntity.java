@@ -31,6 +31,28 @@ public abstract class BaseEntity implements Serializable {
 	//删除标识默认不删除为1
 	private static final Integer DEFAULT_ISVOID = 1;
 	
+	
+	
+	public BaseEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public BaseEntity(Integer cuid, Date cdate, Integer isvoid) {
+		super();
+		this.cuid = cuid;
+		this.cdate = cdate;
+		this.isvoid = isvoid;
+	}
+	
+
+	public BaseEntity(Integer upuid, Date update) {
+		super();
+		this.upuid = upuid;
+		this.update = update;
+	}
+
+
 	//创建者ID
 	@Column(name = "cuid")
 	protected Integer cuid;

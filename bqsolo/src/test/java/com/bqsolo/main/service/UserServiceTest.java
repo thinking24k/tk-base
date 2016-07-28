@@ -6,15 +6,18 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.bqsolo.main.entity.UserEntity;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:spring/*.xml")
 public class UserServiceTest {
-	//@Resource
-	//private UserService  userService;
+	@Resource
+	private UserService  userService;
 	
 	@Test
 	public final void testPageQuery() {
@@ -48,7 +51,9 @@ public class UserServiceTest {
 
 	@Test
 	public final void testDoAdd() {
-		fail("Not yet implemented");
+		UserEntity e=new UserEntity(null, "AA", null, "123456", "123456", null, 6D, 0, null);
+		userService.doAdd(e);
+		
 	}
 
 	@Test
