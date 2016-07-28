@@ -12,7 +12,7 @@ package com.bqsolo.framework.attribute;
 public class DaoAttribute {
 	public static final String CREATIONUSERID = "cuid";
 	public static final String CREATIONDATE = "cdate";
-	public static final String CHANGEUSERID = "upuid";
-	public static final String CHANGEDATE = "update";
+	public static final String CHANGEUSERID = "changeuid";
+	public static final String CHANGEDATE = "changedate";
 	public static final String ISVOID = "isvoid";
 }

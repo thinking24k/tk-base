@@ -10,6 +10,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.bqsolo.main.dao.mapper.UserMapper;
 import com.bqsolo.main.entity.UserEntity;
 
 
@@ -18,6 +19,8 @@ import com.bqsolo.main.entity.UserEntity;
 public class UserServiceTest {
 	@Resource
 	private UserService  userService;
+	@Resource
+	private UserMapper userMapper;
 	
 	@Test
 	public final void testPageQuery() {
@@ -46,12 +49,13 @@ public class UserServiceTest {
 
 	@Test
 	public final void testGetByIds() {
-		fail("Not yet implemented");
+		UserEntity userEntity = userMapper.getById(1);
+		assertNotNull(userEntity);
 	}
 
 	@Test
 	public final void testDoAdd() {
-		UserEntity e=new UserEntity(null, "AA", null, "123456", "123456", null, 6D, 0, null);
+		UserEntity e=new UserEntity(null, "BB", null, "123456", "123456", null, 6D, 0, null);
 		userService.doAdd(e);
 		
 	}

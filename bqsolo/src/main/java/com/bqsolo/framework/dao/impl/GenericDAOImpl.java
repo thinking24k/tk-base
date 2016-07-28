@@ -18,63 +18,66 @@ public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
 	
 	private static Logger logger = Logger.getLogger(GenericDAOImpl.class);
 	
-	@Resource
 	private BaseMapper<E, PK> baseMapper;
-	
+
+	public BaseMapper<E, PK> getBaseMapper() {
+		return baseMapper;
+	}
+
 	@Override
 	public long getCount(Criteria<E> criteria) {
-		return baseMapper.getCount(criteria);
+		return getBaseMapper().getCount(criteria);
 	}
 
 	@Override
 	public List<E> queryForList(Criteria<E> criteria) {
-		return baseMapper.queryForList(criteria);
+		return getBaseMapper().queryForList(criteria);
 	}
 
 	@Override
 	public List<E> queryForPageList(Criteria<E> criteria) {
-		return baseMapper.queryForPageList(criteria);
+		return getBaseMapper().queryForPageList(criteria);
 	}
 
 	@Override
 	public E getById(PK pk) {
-		return baseMapper.getById(pk);
+		return getBaseMapper().getById(pk);
 	}
 
 	@Override
 	public List<E> getByIds(List<PK> pks) {
-		return baseMapper.getByIds(pks);
+		return getBaseMapper().getByIds(pks);
 	}
 
 	@Override
 	public Integer doAdd(E e) {
 		autoPushBasicData(e, DaoAttribute.CREATIONUSERID, DaoAttribute.CREATIONDATE);
-		return baseMapper.doAdd(e);
+		return getBaseMapper().doAdd(e);
 	}
 
 	@Override
 	public Integer doAddBatch(List<E> list) {
-		return baseMapper.doAddBatch(list);
+		return getBaseMapper().doAddBatch(list);
 	}
 
 	@Override
 	public Integer doUpdate(E e) {
-		return baseMapper.doUpdate(e);
+		return getBaseMapper().doUpdate(e);
 	}
 
 	@Override
 	public Integer doDelete(PK pk) {
-		return baseMapper.doDelete(pk);
+		return getBaseMapper().doDelete(pk);
 	}
 
 	@Override
 	public Integer doDeletes(List<PK> pks) {
-		return baseMapper.doDeletes(pks);
+		return getBaseMapper().doDeletes(pks);
 	}
 
 	@Override
 	public Integer doRemove(E e) {
-		return baseMapper.doRemove(e);
+		return getBaseMapper().doRemove(e);
 	}
 	/**
 	* <p>Title: autoPushBasicData</p>
@@ -100,7 +103,7 @@ public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
 					EntityReflectUtil.setFieldValue(dateField,new Date(), entity);
 				}
 			}
-		} catch (IllegalArgumentException | IllegalAccessException e) {
+		} catch (Exception e) {
 			logger.warn("新增自动补充创建者，创建日期时，相关标识字段无存在:"+entity.getClass().getSimpleName(),e);			
 		}
 	}

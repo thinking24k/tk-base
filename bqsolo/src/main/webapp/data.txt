@@ -27,7 +27,7 @@ shorthand 简写
 ALTER TABLE `user`
 ADD COLUMN `cuid`  int(11) UNSIGNED NULL DEFAULT NULL COMMENT '创建者' ,
 ADD COLUMN `cdate`  datetime NULL DEFAULT NULL COMMENT '创建日期' ,
-ADD COLUMN `upuid`  int(11) UNSIGNED NULL DEFAULT NULL COMMENT '修改者' ,
-ADD COLUMN `update`  datetime NULL DEFAULT NULL COMMENT '修改日期' ,
+ADD COLUMN `changeuid`  int(11) UNSIGNED NULL DEFAULT NULL COMMENT '修改者' ,
+ADD COLUMN `changedate`  datetime NULL DEFAULT NULL COMMENT '修改日期' ,
 ADD COLUMN `isvoid`  int(1) NULL DEFAULT 1 COMMENT '删除者';
 

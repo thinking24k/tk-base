@@ -28,8 +28,8 @@ import com.bqsolo.framework.domain.BaseEntity;
 @Table(name = "user")
 public class UserEntity extends BaseEntity implements Serializable {
 
-	private static final long serialVersionUID =  -8421548068249938394L;
-
+	private static final long serialVersionUID =  -5383635283483119182L;
+	
 
 	public UserEntity() {
 		super();

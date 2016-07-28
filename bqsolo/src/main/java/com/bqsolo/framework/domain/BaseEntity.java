@@ -46,10 +46,10 @@ public abstract class BaseEntity implements Serializable {
 	}
 	
 
-	public BaseEntity(Integer upuid, Date update) {
+	public BaseEntity(Integer changeuid, Date changedate) {
 		super();
-		this.upuid = upuid;
-		this.update = update;
+		this.changeuid = changeuid;
+		this.changedate = changedate;
 	}
 
 
@@ -67,22 +67,24 @@ public abstract class BaseEntity implements Serializable {
 	protected Date cdate;	
 	
 	//修改者ID
-	@Column(name = "upuid")
-	protected Integer upuid;
+	@Column(name = "changeuid")
+	protected Integer changeuid;
 	
 	//修改人名称
 	protected String upuname;
 	
 	//修改日期
-	@Column(name = "update")
+	@Column(name = "changedate")
 	@Temporal(TemporalType.TIMESTAMP)	
 	@JsonSerialize(using=JsonDateSerializer.class,include=Inclusion.NON_NULL)
 	@JsonDeserialize(using=JsonDateDeserializer.class)
-	protected Date update;
+	protected Date changedate;
 	
 	//删除标识  1:正常  0:删除
 	@Column(name = "isvoid")	 
 	protected Integer isvoid=DEFAULT_ISVOID;//默认为0 
+
+
 
 	public Integer getCuid() {
 		return cuid;
@@ -108,12 +110,12 @@ public abstract class BaseEntity implements Serializable {
 		this.cdate = cdate;
 	}
 
-	public Integer getUpuid() {
-		return upuid;
+	public Integer getChangeuid() {
+		return changeuid;
 	}
 
-	public void setUpuid(Integer upuid) {
-		this.upuid = upuid;
+	public void setChangeuid(Integer changeuid) {
+		this.changeuid = changeuid;
 	}
 
 	public String getUpuname() {
@@ -124,12 +126,12 @@ public abstract class BaseEntity implements Serializable {
 		this.upuname = upuname;
 	}
 
-	public Date getUpdate() {
-		return update;
+	public Date getChangedate() {
+		return changedate;
 	}
 
-	public void setUpdate(Date update) {
-		this.update = update;
+	public void setChangedate(Date changedate) {
+		this.changedate = changedate;
 	}
 
 	public Integer getIsvoid() {
@@ -139,5 +141,6 @@ public abstract class BaseEntity implements Serializable {
 	public void setIsvoid(Integer isvoid) {
 		this.isvoid = isvoid;
 	}
+
 	
 }

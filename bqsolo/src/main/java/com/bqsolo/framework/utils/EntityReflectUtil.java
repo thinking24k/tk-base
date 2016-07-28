@@ -61,7 +61,10 @@ public class EntityReflectUtil<T> {
 		Object fieldValue = null;
 		try {
 			fieldValue = field.get(obj);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
+		} catch (IllegalArgumentException e) {
+			logger.error("Field获取错误：",e);
+			e.printStackTrace();
+		} catch ( IllegalAccessException e) {
 			logger.error("Field获取错误：",e);
 			e.printStackTrace();
 		}
@@ -85,7 +88,7 @@ public class EntityReflectUtil<T> {
 
 		try {
 			method = clazz.getDeclaredMethod(methodName);
-		} catch (NoSuchMethodException | SecurityException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.warn("method获取错误："+clazz.getSimpleName()+"没有method "+methodName);
 		}
@@ -99,7 +102,7 @@ public class EntityReflectUtil<T> {
 		Object fieldValue = null;
 		try {
 			fieldValue = method.invoke(obj);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			logger.error("Method获取错误：",e);
 			e.printStackTrace();
 		} 

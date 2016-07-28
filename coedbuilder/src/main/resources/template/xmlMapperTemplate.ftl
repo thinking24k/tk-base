@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="${basePackage}.dao.${tableEntity.className}Dao">
-
+<mapper namespace="${basePackage}.dao.mapper.${tableEntity.className}Mapper">
 	<!-- 注意：1. BaseResultMap 与底层架构有关,除数据库变更.严禁人为修改. -->
 	<resultMap id="BaseResultMap"  type="${basePackage}.entity.${entityName}">
 	<#list tableEntity.columns as col>
