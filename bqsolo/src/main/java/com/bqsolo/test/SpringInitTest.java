@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.bqsolo.main.staticVar.Constant;
+import com.bqsolo.main.attribute.CommonAttribute;
 import com.bqsolo.main.utils.MailUtil;
 
 
@@ -25,6 +25,6 @@ public class SpringInitTest {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("name", "邓");
 		map.put("regIp", "127.0.0.1");
-		mailUtil.sendhtmlMail("dengyixiang_jy@126.com", "553067271@qq.com", "test", Constant.REGISTERFTL, map);
+		mailUtil.sendhtmlMail("dengyixiang_jy@126.com", "553067271@qq.com", "test", CommonAttribute.REGISTERFTL, map);
 	} 
 }

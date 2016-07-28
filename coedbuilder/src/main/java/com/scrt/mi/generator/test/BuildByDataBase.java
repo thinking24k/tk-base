@@ -34,7 +34,7 @@ public class BuildByDataBase {
 	 */
 	@Test
 	public void builderSmomeBySqlTest() throws Exception{
-		Integer builderBySql = builderService.builderAllBySql("pl_base_video");
+		Integer builderBySql = builderService.builderAllBySql("user");
 		Assert.assertTrue(builderBySql.equals(1));
 	}
 

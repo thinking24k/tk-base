@@ -28,99 +28,94 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion;
 @JsonInclude(Include.NON_NULL) 
 public abstract class BaseEntity implements Serializable {
 	private static final long serialVersionUID = 8588831511975331228L;
+	//删除标识默认不删除为1
+	private static final Integer DEFAULT_ISVOID = 1;
 	
 	//创建者ID
-	@Column(name = "creationuserid")
-	protected Integer creationuserid;
+	@Column(name = "cuid")
+	protected Integer cuid;
 	//创建人名称
-	protected String creationusername; 
+	protected String cuname; 
 	
 	//创建日期
-	@Column(name = "creationdate")
+	@Column(name = "cdate")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonSerialize(using=JsonDateSerializer.class,include=Inclusion.NON_NULL)
 	@JsonDeserialize(using=JsonDateDeserializer.class)
-	protected Date creationdate;	
+	protected Date cdate;	
 	
 	//修改者ID
-	@Column(name = "changeuserid")
-	protected Integer changeuserid;
-	//修改人名称
+	@Column(name = "upuid")
+	protected Integer upuid;
 	
-	protected String changeusername;
+	//修改人名称
+	protected String upuname;
+	
 	//修改日期
-	@Column(name = "changedate")
+	@Column(name = "update")
 	@Temporal(TemporalType.TIMESTAMP)	
 	@JsonSerialize(using=JsonDateSerializer.class,include=Inclusion.NON_NULL)
 	@JsonDeserialize(using=JsonDateDeserializer.class)
-	protected Date changedate;
+	protected Date update;
 	
-	//删除标识  0:正常  1:删除
+	//删除标识  1:正常  0:删除
 	@Column(name = "isvoid")	 
-	protected Integer isvoid;
+	protected Integer isvoid=DEFAULT_ISVOID;//默认为0 
 
+	public Integer getCuid() {
+		return cuid;
+	}
+
+	public void setCuid(Integer cuid) {
+		this.cuid = cuid;
+	}
+
+	public String getCuname() {
+		return cuname;
+	}
+
+	public void setCuname(String cuname) {
+		this.cuname = cuname;
+	}
+
+	public Date getCdate() {
+		return cdate;
+	}
+
+	public void setCdate(Date cdate) {
+		this.cdate = cdate;
+	}
+
+	public Integer getUpuid() {
+		return upuid;
+	}
+
+	public void setUpuid(Integer upuid) {
+		this.upuid = upuid;
+	}
+
+	public String getUpuname() {
+		return upuname;
+	}
+
+	public void setUpuname(String upuname) {
+		this.upuname = upuname;
+	}
+
+	public Date getUpdate() {
+		return update;
+	}
+
+	public void setUpdate(Date update) {
+		this.update = update;
+	}
 
 	public Integer getIsvoid() {
-		if(null==isvoid){
-			this.isvoid=0;//默认为0 
-		}
 		return isvoid;
 	}
 
 	public void setIsvoid(Integer isvoid) {
 		this.isvoid = isvoid;
 	}
-
-	public Integer getCreationuserid() {
-		return creationuserid;
-	}
-
-	public void setCreationuserid(Integer creationuserid) {
-		this.creationuserid = creationuserid;
-	}
-
-	public Date getCreationdate() {
-		return creationdate;
-	}
-
-	public void setCreationdate(Date creationdate) {
-		this.creationdate = creationdate;
-	}
-
-	public Integer getChangeuserid() {
-		return changeuserid;
-	}
-
-	public void setChangeuserid(Integer changeuserid) {
-		this.changeuserid = changeuserid;
-	}
-
-	public Date getChangedate() {
-		return changedate;
-	}
-
-	public void setChangedate(Date changedate) {
-		this.changedate = changedate;
-	}
-
-	public String getCreationusername() {
-		return creationusername;
-	}
-
-	public void setCreationusername(String creationusername) {
-		this.creationusername = creationusername;
-	}
-
-	public String getChangeusername() {
-		return changeusername;
-	}
-
-	public void setChangeusername(String changeusername) {
-		this.changeusername = changeusername;
-	}
 	
-	
-	
-
-
 }

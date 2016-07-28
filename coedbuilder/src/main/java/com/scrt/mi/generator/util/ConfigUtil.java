@@ -27,11 +27,11 @@ public class ConfigUtil {
 		Properties properties = propertiesUtil.getPropertiesByRalPath(CommonAttribute.PROPERTIES_FILE_RALPATH,CommonAttribute.CONFIG_FILE_NAME);
 		load(properties);
 		StringBuilder sb=new StringBuilder(ConfigUtil.getByKey(CommonAttribute.BASEPACKAGE));
-		if(StringUtil.isEmpty(ConfigUtil.getByKey(CommonAttribute.PLATFORM))){
+		if(!StringUtil.isEmpty(ConfigUtil.getByKey(CommonAttribute.PLATFORM))){
 			sb.append(".");
 			sb.append(ConfigUtil.getByKey(CommonAttribute.PLATFORM));
 		}
-		if(StringUtil.isEmpty(ConfigUtil.getByKey(CommonAttribute.MODULENAME))){
+		if(!StringUtil.isEmpty(ConfigUtil.getByKey(CommonAttribute.MODULENAME))){
 			sb.append(".");
 			sb.append(ConfigUtil.getByKey(CommonAttribute.MODULENAME));
 		}

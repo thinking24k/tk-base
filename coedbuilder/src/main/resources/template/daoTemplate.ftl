@@ -1,6 +1,6 @@
 package ${basePackage}.dao;
 
-import ${basePackage}.domain.${entityName};
+import ${basePackage}.entity.${entityName};
 import com.bqsolo.framework.dao.GenericDAO;
 /** 
 * @ClassName: ${tableEntity.className}Dao

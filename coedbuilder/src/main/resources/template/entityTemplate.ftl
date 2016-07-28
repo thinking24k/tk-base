@@ -24,7 +24,7 @@ import com.bqsolo.framework.domain.BaseEntity;
 * @date ${nowDate}
 *  
 */ 
-@Entity(name = "${entityName}")
+@Entity(name = "${tableEntity.className}Entity")
 @Table(name = "${tableEntity.tableName}")
 public class ${entityName} extends BaseEntity implements Serializable {
 
@@ -32,7 +32,7 @@ public class ${entityName} extends BaseEntity implements Serializable {
 
 
 	<#list tableEntity.columns as col>
-		<#if col.columnName !='creationuserid' && col.columnName !='creationdate' && col.columnName !='changeuserid' && col.columnName !='changedate' && col.columnName !='isvoid' >
+		<#if col.columnName !='cuid' && col.columnName !='cdate' && col.columnName !='upuid' && col.columnName !='update' && col.columnName !='isvoid' >
 	//${col.columnAnnotations?default('-')}
 			<#if col.isPrimaryKey?exists && 1 == col.isPrimaryKey >
 	@Id	
@@ -53,7 +53,7 @@ public class ${entityName} extends BaseEntity implements Serializable {
 	</#list>
 	
 	<#list tableEntity.columns as col>
-		<#if col.columnName !='creationuserid' && col.columnName !='creationdate' && col.columnName !='changeuserid' && col.columnName !='changedate' && col.columnName !='isvoid' >
+		<#if col.columnName !='cuid' && col.columnName !='cdate' && col.columnName !='upuid' && col.columnName !='update' && col.columnName !='isvoid' >
 	/**${col.columnAnnotations?default('-')}*/
 	public ${col.classAttrType} get${col.endStr}() {
 		return ${col.classAttr};

@@ -1,4 +1,4 @@
-package com.bqsolo.main.staticVar;
+package com.bqsolo.main.attribute;
 
 
 /**
@@ -6,7 +6,7 @@ package com.bqsolo.main.staticVar;
  * @author deng
  *
  */
-public class Constant {
+public class CommonAttribute {
 	/** 登录的普通用户 */
 	public static final String SESSIONUSER="sessionUser";
 	/** 登录的Admin*/
@@ -25,7 +25,7 @@ public class Constant {
 	
 	//静态初始化
 	static{
-			String path=Constant.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+			String path=CommonAttribute.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 			LOCALCLASSPATH=path.substring(0, path.indexOf("classes"))+"classes/";
 	}
 }

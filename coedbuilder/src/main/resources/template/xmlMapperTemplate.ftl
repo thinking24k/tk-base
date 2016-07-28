@@ -158,7 +158,7 @@
         <include refid="sortSql"/>
         <include refid="com.bqsolo.framework.dao.CommonMapper.pagingLimit"/>
       </if>
-      limit #{page.pageBean.dateNo},#{page.pageBean.pageSize}
+      limit ${r"#"}{page.pageBean.dateNo},${r"#"}{page.pageBean.pageSize}
   </select>
   
  

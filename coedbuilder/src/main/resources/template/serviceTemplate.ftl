@@ -2,6 +2,7 @@ package ${basePackage}.service;
 
 import com.bqsolo.framework.dao.GenericDAO;
 import com.bqsolo.framework.page.PageBean;
+import com.bqsolo.framework.page.Criteria;
 import ${basePackage}.entity.${entityName};
 /** 
 * @ClassName: ${tableEntity.className}Service 
