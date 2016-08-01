@@ -1,0 +1,7 @@
+*.project
+*.prefs
+*.classpath
+*.jsdtscope
+*.settings
+*.container
+*/target/*
