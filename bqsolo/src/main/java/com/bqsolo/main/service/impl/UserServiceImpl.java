@@ -15,7 +15,7 @@ import com.bqsolo.main.service.UserService;
 * @company 
 * @author yixiang.deng
 * @Email 553067271@qq.com
-* @date 2016年07月28日
+* @date 2016年08月01日
 *  
 */
 @Service

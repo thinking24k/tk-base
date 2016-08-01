@@ -32,7 +32,7 @@ public class ${entityName} extends BaseEntity implements Serializable {
 
 
 	<#list tableEntity.columns as col>
-		<#if col.columnName !='cuid' && col.columnName !='cdate' && col.columnName !='upuid' && col.columnName !='update' && col.columnName !='isvoid' >
+		<#if col.columnName !='cuid' && col.columnName !='cdate' && col.columnName !='changeuid' && col.columnName !='changedate' && col.columnName !='isvoid' >
 	//${col.columnAnnotations?default('-')}
 			<#if col.isPrimaryKey?exists && 1 == col.isPrimaryKey >
 	@Id	
@@ -53,7 +53,7 @@ public class ${entityName} extends BaseEntity implements Serializable {
 	</#list>
 	
 	<#list tableEntity.columns as col>
-		<#if col.columnName !='cuid' && col.columnName !='cdate' && col.columnName !='upuid' && col.columnName !='update' && col.columnName !='isvoid' >
+		<#if col.columnName !='cuid' && col.columnName !='cdate' && col.columnName !='changeuid' && col.columnName !='changedate' && col.columnName !='isvoid' >
 	/**${col.columnAnnotations?default('-')}*/
 	public ${col.classAttrType} get${col.endStr}() {
 		return ${col.classAttr};

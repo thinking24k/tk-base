@@ -1,9 +1,7 @@
 package com.bqsolo.main.dao.impl;
 
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Repository;
-
 import com.bqsolo.main.entity.UserEntity;
 import com.bqsolo.main.dao.UserDao;
 import com.bqsolo.main.dao.mapper.UserMapper;
@@ -15,7 +13,7 @@ import com.bqsolo.framework.dao.mapper.BaseMapper;
 * @company 
 * @author yixiang.deng
 * @Email 553067271@qq.com
-* @date 2016年07月28日
+* @date 2016年08月01日
 *  
 */ 
 @Repository

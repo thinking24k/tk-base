@@ -2,6 +2,9 @@ package com.bqsolo.main.service;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -55,14 +58,19 @@ public class UserServiceTest {
 
 	@Test
 	public final void testDoAdd() {
-		UserEntity e=new UserEntity(null, "BB", null, "123456", "123456", null, 6D, 0, null);
+		UserEntity e=new UserEntity(null, "AA", null, "123456", "123456", null, 6D, 0, null);
 		userService.doAdd(e);
 		
 	}
 
 	@Test
 	public final void testDoAddBatch() {
-		fail("Not yet implemented");
+		//使用代码或不批量
+		List<UserEntity> list=new ArrayList<UserEntity>();
+		list.add(new UserEntity(null, "AA1", null, "123456", "123456", null, 6D, 0, null));
+		list.add(new UserEntity(null, "AA2", null, "123456", "123456", null, 6D, 0, null));
+		list.add(new UserEntity(null, "AA3", null, "123456", "123456", null, 6D, 0, null));
+		userService.doAddBatch(list);
 	}
 
 	@Test

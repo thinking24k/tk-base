@@ -4,8 +4,6 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 
 import com.bqsolo.framework.attribute.DaoAttribute;
@@ -57,7 +55,7 @@ public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
 
 	@Override
 	public Integer doAddBatch(List<E> list) {
-		return getBaseMapper().doAddBatch(list);
+		return getBaseMapper().doAddBatch(list,list.get(0));
 	}
 
 	@Override
@@ -107,4 +105,5 @@ public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
 			logger.warn("新增自动补充创建者，创建日期时，相关标识字段无存在:"+entity.getClass().getSimpleName(),e);			
 		}
 	}
+
 }

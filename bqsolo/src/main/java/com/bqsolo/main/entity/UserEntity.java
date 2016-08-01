@@ -21,20 +21,21 @@ import com.bqsolo.framework.domain.BaseEntity;
 * @company 
 * @author yixiang.deng
 * @Email 553067271@qq.com
-* @date 2016年07月28日
+* @date 2016年08月01日
 *  
 */ 
 @Entity(name = "UserEntity")
 @Table(name = "user")
 public class UserEntity extends BaseEntity implements Serializable {
 
-	private static final long serialVersionUID =  -5383635283483119182L;
-	
+	private static final long serialVersionUID =  -6364219986584834918L;
+
 
 	public UserEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public UserEntity(Integer id, String nickname, String email, String mobile,
 			String password, String img, Double priority, Integer sex,
 			Integer logintime) {
@@ -49,6 +50,7 @@ public class UserEntity extends BaseEntity implements Serializable {
 		this.sex = sex;
 		this.logintime = logintime;
 	}
+
 	//主键
 	@Id	
 	@GeneratedValue(strategy=GenerationType.AUTO)

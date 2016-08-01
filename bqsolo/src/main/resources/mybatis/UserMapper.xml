@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bqsolo.main.dao.mapper.UserMapper">
-
 	<!-- 注意：1. BaseResultMap 与底层架构有关,除数据库变更.严禁人为修改. -->
 	<resultMap id="BaseResultMap"  type="com.bqsolo.main.entity.UserEntity">
 		<id column="id" property="id" jdbcType="INTEGER" />
@@ -15,13 +14,13 @@
 		<result column="logintime" property="logintime" jdbcType="INTEGER" />
 		<result column="cuid" property="cuid" jdbcType="INTEGER" />
 		<result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
-		<result column="upuid" property="upuid" jdbcType="INTEGER" />
-		<result column="update" property="update" jdbcType="TIMESTAMP" />
+		<result column="changeuid" property="changeuid" jdbcType="INTEGER" />
+		<result column="changedate" property="changedate" jdbcType="TIMESTAMP" />
 		<result column="isvoid" property="isvoid" jdbcType="INTEGER" />
 	</resultMap>
 
 	<sql id="allColumn">
-		id,nickname,email,mobile,password,img,priority,sex,logintime,cuid,cdate,upuid,update,isvoid
+		id,nickname,email,mobile,password,img,priority,sex,logintime,cuid,cdate,changeuid,changedate,isvoid
 	</sql>
 
 	<insert id="doAdd"  parameterType="com.bqsolo.main.entity.UserEntity" >
@@ -36,8 +35,8 @@
 <if test="null != logintime"  >logintime,</if>
 <if test="null != cuid"  >cuid,</if>
 <if test="null != cdate"  >cdate,</if>
-<if test="null != upuid"  >upuid,</if>
-<if test="null != update"  >update,</if>
+<if test="null != changeuid"  >changeuid,</if>
+<if test="null != changedate"  >changedate,</if>
  
  isvoid) values ( 
 <if test="null != nickname"  >#{nickname},</if>
@@ -50,13 +49,13 @@
 <if test="null != logintime"  >#{logintime},</if>
 <if test="null != cuid"  >#{cuid},</if>
 <if test="null != cdate"  >#{cdate},</if>
-<if test="null != upuid"  >#{upuid},</if>
-<if test="null != update"  >#{update},</if>
+<if test="null != changeuid"  >#{changeuid},</if>
+<if test="null != changedate"  >#{changedate},</if>
  
  #{isvoid})
   	</insert>
   	
-	<insert id="doAddBatch"  parameterType="java.util.List" >
+	<insert id="doAddBatch"   >
     	insert into user (
 					<if test="null != nickname"  >
 						 nickname,
@@ -88,11 +87,11 @@
 					<if test="null != cdate"  >
 						 cdate,
 					</if>
-					<if test="null != upuid"  >
-						 upuid,
+					<if test="null != changeuid"  >
+						 changeuid,
 					</if>
-					<if test="null != update"  >
-						 update,
+					<if test="null != changedate"  >
+						 changedate,
 					</if>
 					<if test="null != isvoid"  >
 						 isvoid,
@@ -100,44 +99,44 @@
 		 ) values
 		 <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
 						<if test="null != nickname"  >
-						 	#{nickname},
-						</if>
-						<if test="null != email"  >
-						 	#{email},
-						</if>
-						<if test="null != mobile"  >
-						 	#{mobile},
-						</if>
-						<if test="null != password"  >
-						 	#{password},
-						</if>
-						<if test="null != img"  >
-						 	#{img},
-						</if>
-						<if test="null != priority"  >
-						 	#{priority},
-						</if>
-						<if test="null != sex"  >
-						 	#{sex},
-						</if>
-						<if test="null != logintime"  >
-						 	#{logintime},
-						</if>
-						<if test="null != cuid"  >
-						 	#{cuid},
-						</if>
-						<if test="null != cdate"  >
-						 	#{cdate},
-						</if>
-						<if test="null != upuid"  >
-						 	#{upuid},
-						</if>
-						<if test="null != update"  >
-						 	#{update},
-						</if>
-						<if test="null != isvoid"  >
-						 	#{isvoid},
-						</if>
+						 #{item.nickname,jdbcType=VARCHAR},
+					</if>
+					<if test="null != email"  >
+						 #{item.email,jdbcType=VARCHAR},
+					</if>
+					<if test="null != mobile"  >
+						#{item.mobile,jdbcType=VARCHAR},
+					</if>
+					<if test="null != password"  >
+						#{item.password,jdbcType=VARCHAR},
+					</if>
+					<if test="null != img"  >
+						#{item.img,jdbcType=VARCHAR},
+					</if>
+					<if test="null != priority"  >
+						#{item.priority,jdbcType=DOUBLE},
+					</if>
+					<if test="null != sex"  >
+						#{item.sex,jdbcType=INTEGER},
+					</if>
+					<if test="null != logintime"  >
+						 #{item.logintime,jdbcType=INTEGER},
+					</if>
+					<if test="null != cuid"  >
+						#{item.cuid,jdbcType=INTEGER},
+					</if>
+					<if test="null != cdate"  >
+						#{item.cdate,jdbcType=TIMESTAMP},
+					</if>
+					<if test="null != changeuid"  >
+						 #{item.changeuid,jdbcType=INTEGER},
+					</if>
+					<if test="null != changedate"  >
+						#{item.changedate,jdbcType=TIMESTAMP},
+					</if>
+					<if test="null != isvoid"  >
+						#{item.isvoid,jdbcType=INTEGER},
+					</if>
 		</foreach>
   	</insert>
   	
@@ -175,11 +174,11 @@
 					<if test="null != cdate"  >
 						 cdate = #{cdate,jdbcType=TIMESTAMP},
 					</if>
-					<if test="null != upuid"  >
-						 upuid = #{upuid,jdbcType=INTEGER},
+					<if test="null != changeuid"  >
+						 changeuid = #{changeuid,jdbcType=INTEGER},
 					</if>
-					<if test="null != update"  >
-						 update = #{update,jdbcType=TIMESTAMP},
+					<if test="null != changedate"  >
+						 changedate = #{changedate,jdbcType=TIMESTAMP},
 					</if>
 					<if test="null != isvoid"  >
 						 isvoid = #{isvoid,jdbcType=INTEGER},
@@ -326,11 +325,11 @@
 		<if test="null != cdate and cdate != ''">
 			AND cdate = #{cdate,jdbcType=TIMESTAMP}
 		</if>
-		<if test="null != upuid">
-			AND upuid = #{upuid,jdbcType=INTEGER}
+		<if test="null != changeuid">
+			AND changeuid = #{changeuid,jdbcType=INTEGER}
 		</if>	
-		<if test="null != update and update != ''">
-			AND update = #{update,jdbcType=TIMESTAMP}
+		<if test="null != changedate and changedate != ''">
+			AND changedate = #{changedate,jdbcType=TIMESTAMP}
 		</if>
 		<if test="null != isvoid">
 			AND isvoid = #{isvoid,jdbcType=INTEGER}
@@ -377,11 +376,11 @@
 						<when test="field == 'cdate'">
 			                 cdate ${sortItemMap.cdate}
 			            </when>
-						<when test="field == 'upuid'">
-			                 upuid ${sortItemMap.upuid}
+						<when test="field == 'changeuid'">
+			                 changeuid ${sortItemMap.changeuid}
 			            </when>
-						<when test="field == 'update'">
-			                 update ${sortItemMap.update}
+						<when test="field == 'changedate'">
+			                 changedate ${sortItemMap.changedate}
 			            </when>
 						<when test="field == 'isvoid'">
 			                 isvoid ${sortItemMap.isvoid}

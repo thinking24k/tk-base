@@ -1,10 +1,12 @@
-package com.bqsolo.framework.dao.mapper;
+package com.bqsolo.framework.service;
 
 import java.util.List;
 
 import com.bqsolo.framework.page.Criteria;
 
-public interface BaseMapper<E, PK> {
+public interface BaseService<E, PK> {
+
+	
 	  public  long getCount(Criteria<E> criteria);
 
 	  public  List<E> queryForList(Criteria<E> criteria);
@@ -17,7 +19,7 @@ public interface BaseMapper<E, PK> {
 	  
 	  public Integer doAdd(E e);
 	  
-	  public Integer doAddBatch(List<E> list, E e);
+	  public Integer doAddBatch(List<E> list);
 	  
 	  public Integer doUpdate(E e);
 	  
@@ -26,4 +28,6 @@ public interface BaseMapper<E, PK> {
 	  public Integer doDeletes(List<PK> pks);
 	  
 	  public Integer doRemove(E e);
+	
 }
+
