@@ -1,0 +1,33 @@
+图片信息
+
+id  主键
+logicname 逻辑名称(bqsolo.top.{userid}[5位随机数])
+title 标题
+src 路径
+priority 权重（风格）1-10 2位小数
+lable 标签 多个用，号
+MD5  文件md5
+click 点击
+gruopid 组
+userid 用户
+
+共有属性
+
+分组
+id
+gruopname 组名
+shorthand 简写
+//共有属性
+
+
+管理员
+用户
+
+
+ALTER TABLE `user`
+ADD COLUMN `cuid`  int(11) UNSIGNED NULL DEFAULT NULL COMMENT '创建者' ,
+ADD COLUMN `cdate`  datetime NULL DEFAULT NULL COMMENT '创建日期' ,
+ADD COLUMN `changeuid`  int(11) UNSIGNED NULL DEFAULT NULL COMMENT '修改者' ,
+ADD COLUMN `changedate`  datetime NULL DEFAULT NULL COMMENT '修改日期' ,
+ADD COLUMN `isvoid`  int(1) NULL DEFAULT 1 COMMENT '删除者';
+
