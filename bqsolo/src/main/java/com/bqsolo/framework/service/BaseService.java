@@ -13,9 +13,9 @@ public interface BaseService<E, PK> {
 
 	  public  List<E> queryForPageList(Criteria<E> criteria);
 	  
-	  public  E getById(PK  pk);
+	  public  E getById(PK  id);
 	  
-	  public  List<E> getByIds(List<PK>  pks);
+	  public  List<E> getByIds(List<PK>  ids);
 	  
 	  public Integer doAdd(E e);
 	  
@@ -23,11 +23,11 @@ public interface BaseService<E, PK> {
 	  
 	  public Integer doUpdate(E e);
 	  
-	  public Integer doDelete(PK pk);
+	  public Integer doDelete(PK id);
 	  
-	  public Integer doDeletes(List<PK> pks);
+	  public Integer doDeletes(List<PK> ids);
 	  
-	  public Integer doRemove(E e);
+	  public Integer doRemove(PK id);
 	
 }
 

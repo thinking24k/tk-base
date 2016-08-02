@@ -6,25 +6,26 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.bqsolo.framework.attribute.DaoAttribute;
+import com.bqsolo.framework.attribute.CommonAttribute;
 import com.bqsolo.framework.dao.GenericDAO;
 import com.bqsolo.framework.dao.mapper.BaseMapper;
+import com.bqsolo.framework.domain.BaseEntity;
 import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.utils.EntityReflectUtil;
 
-public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
+public class GenericDAOImpl<E extends BaseEntity , PK> implements GenericDAO<E, PK> {
 	
 	private static Logger logger = Logger.getLogger(GenericDAOImpl.class);
 	
 	private BaseMapper<E, PK> baseMapper;
-
+	//子类重写提供独立的mapper
 	public BaseMapper<E, PK> getBaseMapper() {
 		return baseMapper;
 	}
 
 	@Override
 	public long getCount(Criteria<E> criteria) {
-		return getBaseMapper().getCount(criteria);
+		return getBaseMapper().getCount(criteria.getParam());
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
 
 	@Override
 	public Integer doAdd(E e) {
-		autoPushBasicData(e, DaoAttribute.CREATIONUSERID, DaoAttribute.CREATIONDATE);
+		autoAddinfo(e);
 		return getBaseMapper().doAdd(e);
 	}
 
@@ -60,6 +61,7 @@ public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
 
 	@Override
 	public Integer doUpdate(E e) {
+		autoChangeinfo(e);
 		return getBaseMapper().doUpdate(e);
 	}
 
@@ -75,7 +77,19 @@ public class GenericDAOImpl<E , PK> implements GenericDAO<E, PK> {
 
 	@Override
 	public Integer doRemove(E e) {
+		autoChangeinfo(e);
 		return getBaseMapper().doRemove(e);
+	}
+	//自动装配新增属性
+	private void autoAddinfo(E e){
+		e.setCuid(1000);
+		e.setCdate(new Date());
+		e.setIsvoid(CommonAttribute.ISVOID_TRUE);
+	}
+	//自动装配修改属性
+	private void autoChangeinfo(E e){
+		e.setChangeuid(1000);
+		e.setChangedate(new Date());
 	}
 	/**
 	* <p>Title: autoPushBasicData</p>

@@ -70,7 +70,7 @@
 	  	<where> 
 	  		id 
 	  	=
-			${r"$"}{pk}
+			${r"#"}{id}
 		</where>
     </delete>
     
@@ -80,29 +80,29 @@
 	  	<where> 
 	  		id 
 	  	in 
-			<foreach collection="pks" item="item" index="index" open="(" close=")" separator=",">
-				${r"$"}{item}
+			<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+				${r"#"}{item}
 			</foreach>
 		</where>
     </delete>
     
-    <update id="doRemove" >
+    <update id="doRemove" parameterType="${basePackage}.entity.${entityName}"  >
     	update 
     		${tableEntity.tableName}
-    	set isvoid = 1
-	    <if test="entity.changeuserid != null" >
-	      ,upuid = ${r"#"}{e.upuid,jdbcType=BIGINT}
+    	set isvoid = 0
+	    <if test="changeuid != null" >
+	      ,changeuid = ${r"#"}{changeuid}
 	    </if>
 	    <choose>
-	      <when test="entity.changedate != null">
-	        ,update = ${r"#"}{e.update,jdbcType=TIMESTAMP}
+	      <when test="changedate != null">
+	        ,changedate = ${r"#"}{changedate}
 	      </when>
 	      <otherwise>
-	        ,update = NOW()
+	        ,changedate = NOW()
 	      </otherwise>
 	    </choose>
 	     <where>
-		     id = ${r"$"}{pk}
+		     id = ${r"#"}{id}
 		</where>
   	</update>
   		
@@ -112,7 +112,7 @@
       	from 
       		${tableEntity.tableName}
 	    <where>
-		    id = ${r"$"}{pk}
+		    id = ${r"#"}{id}
 		</where>
   </select>
   
@@ -124,8 +124,8 @@
 	  	<where> 
 	  		id 
 	  	in 
-			<foreach collection="pks" item="item" index="index" open="(" close=")" separator=",">
-				${r"$"}{item}
+			<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+				${r"#"}{item}
 			</foreach>
 		</where>
   	</select>

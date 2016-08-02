@@ -17,9 +17,9 @@ import com.bqsolo.framework.dao.RedisDao;
  * @date 2014年6月9日 下午1:37:46 
  * 
  */  
-public class RedisCache   implements Cache {  
+/*public class RedisCache   implements Cache {  
 	private static Log log = LogFactory.getLog(RedisCache.class);  
-	/** The ReadWriteLock. */  
+	*//** The ReadWriteLock. *//*  
 	private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();  
 
 	private String id;  
@@ -77,4 +77,4 @@ public class RedisCache   implements Cache {
 	}  
 	
 
-}  
+}  */

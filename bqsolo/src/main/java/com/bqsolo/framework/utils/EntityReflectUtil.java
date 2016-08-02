@@ -1,8 +1,8 @@
 package com.bqsolo.framework.utils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import javax.persistence.Id;
 
@@ -219,7 +219,34 @@ public class EntityReflectUtil<T> {
         }  
       
         return null;  
-    }     
+    }
+
+    /** 
+     * 循环向上转型, 获取对象的 DeclaredField 
+     * @param object : 子类对象 
+     * @param fieldName : 父类中的属性名 
+     * @return 父类中的属性对象 
+     */  
+     
+    public static Field[] getDeclaredFields(Class clazz){  
+        
+        Field selffields[] =  clazz.getDeclaredFields() ;
+        Class superClazz = clazz.getSuperclass();
+        if(superClazz==Object.class){
+        	return selffields;
+        }else{
+       	 	Field superfields[] =  superClazz.getDeclaredFields();
+       	 	if(superfields!=null&&superfields.length>0){
+       	 		List<Field> selffieldsLst = ListUtil.convertArrayToList(selffields);
+       	 		List<Field> superfieldsLst = ListUtil.convertArrayToList(superfields);
+       	 		selffieldsLst.addAll(superfieldsLst);
+           	 	Field fields[] = ListUtil.convertListToArray(selffieldsLst);
+           	 	return fields;      	 		
+       	 	}else{
+       	 	return selffields;
+       	 	}
+        }
+    }  
     
         
 }

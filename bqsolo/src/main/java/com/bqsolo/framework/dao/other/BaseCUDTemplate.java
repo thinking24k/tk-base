@@ -11,13 +11,13 @@ import static org.apache.ibatis.jdbc.SqlBuilder.UPDATE;
 import static org.apache.ibatis.jdbc.SqlBuilder.VALUES;
 import static org.apache.ibatis.jdbc.SqlBuilder.WHERE;
 
-
-
-
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import com.bqsolo.framework.domain.OrmEntity;
+import com.bqsolo.framework.utils.ListUtil;
 
 /**
  * @ClassName: CUDTemplate
@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
  * 
  * @param <T>
  */
-public class BaseCUDTemplate<T> {
+public class BaseCUDTemplate<T extends OrmEntity> {
 	private static Logger logger = Logger.getLogger(BaseCUDTemplate.class);
 	protected static final String KEY_ID = "id";
 	protected static final String KEY_ID_LIST = "list";
@@ -114,8 +114,8 @@ public class BaseCUDTemplate<T> {
 	*/ 
 	public String doBatchInsert(Map<String, Object> para) {
 		StringBuffer sb = new StringBuffer();
-		List<T> objList = (List<T>)MapUtil.getValue(para,"list");
-		Map<String,String> excludeColumns =  (Map<String,String>)MapUtil.getValue(para,"excludeColumns");
+		List<T> objList = (List<T>)para.get("list");
+		Map<String,String> excludeColumns =  (Map<String,String>)para.get("excludeColumns");
 			T obj = objList.get(0);
 			obj.caculationColumnList();
 			sb.append("insert into ").append(obj.tablename() );

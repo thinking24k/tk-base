@@ -190,13 +190,13 @@
 	 </update>
 	 
      	
-  	<delete id="doDelete"  >
+  	<delete id="doDelete" parameterType="java.lang.Integer" >
   		delete  from 
   			user
 	  	<where> 
 	  		id 
 	  	=
-			${pk}
+			#{id}
 		</where>
     </delete>
     
@@ -206,29 +206,29 @@
 	  	<where> 
 	  		id 
 	  	in 
-			<foreach collection="pks" item="item" index="index" open="(" close=")" separator=",">
-				${item}
+			<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+				#{item}
 			</foreach>
 		</where>
     </delete>
     
-    <update id="doRemove" >
+    <update id="doRemove"  parameterType="com.bqsolo.main.entity.UserEntity">
     	update 
     		user
-    	set isvoid = 1
-	    <if test="entity.changeuserid != null" >
-	      ,upuid = #{e.upuid,jdbcType=BIGINT}
+    	set isvoid = 0
+	    <if test="changeuid != null" >
+	      ,changeuid = #{changeuid}
 	    </if>
 	    <choose>
-	      <when test="entity.changedate != null">
-	        ,update = #{e.update,jdbcType=TIMESTAMP}
+	      <when test="changedate != null">
+	        ,changedate = #{changedate}
 	      </when>
 	      <otherwise>
-	        ,update = NOW()
+	        ,changedate = NOW()
 	      </otherwise>
 	    </choose>
 	     <where>
-		     id = ${pk}
+		     id = #{id}
 		</where>
   	</update>
   		
@@ -238,7 +238,7 @@
       	from 
       		user
 	    <where>
-		    id = ${pk}
+		    id = #{id}
 		</where>
   </select>
   
@@ -250,8 +250,8 @@
 	  	<where> 
 	  		id 
 	  	in 
-			<foreach collection="pks" item="item" index="index" open="(" close=")" separator=",">
-				${item}
+			<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+				#{item}
 			</foreach>
 		</where>
   	</select>

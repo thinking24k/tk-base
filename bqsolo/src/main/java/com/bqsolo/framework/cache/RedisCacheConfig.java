@@ -23,31 +23,19 @@ import org.springframework.data.redis.core.RedisTemplate;
 * @date 2016年5月31日 
 *  
 */ 
-@Configuration  
+/*@Configuration  
 @EnableCaching
 public class RedisCacheConfig extends CachingConfigurerSupport {  
 
 	//(spring-base-datasource.xml文件中已定义redisTemplate,
 	//使用jedisConnectionFactory直接初始化会导致redisTemplate全部使用默认只初始化)
-	//@Autowired
-	//@Qualifier("jedisConnectionFactory")     
-   // private JedisConnectionFactory jedisConnectionFactory;  
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;	
 
 	
-	//@Bean
-   // public JedisConnectionFactory jedisConnectionFactory() {
-/*		JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();  
-		jedisConnectionFactory.setHostName("127.0.0.1");  
-		jedisConnectionFactory.setPort(6379);  */
-       // return jedisConnectionFactory;
-    //}
-  
-//    @Bean  
+
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory cf) {
-    	//RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();  
-    	//redisTemplate.setConnectionFactory(cf);  
+
         return redisTemplate;
     }  
   
@@ -58,4 +46,4 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
         return cacheManager;  
     }  
       
-}  
+}  */

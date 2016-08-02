@@ -38,13 +38,12 @@ public class OrmEntity implements Serializable  {
 	 * @return
 	 * @throws Exception 
 	 */
-	public  String tablename() throws Exception {
+	public  String tablename() {
 		Table table = this.getClass().getAnnotation(Table.class);
 		if (table != null)
 			return table.name();
 		else
-			throw new Exception(
-					"undefine POJO @Table, need Tablename(@Table(name))");
+			return "undefine POJO @Table, need Tablename(@Table(name))" ;
 	}
 
 	/**

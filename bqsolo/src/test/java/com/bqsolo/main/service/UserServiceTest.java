@@ -13,6 +13,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.bqsolo.framework.page.Criteria;
+import com.bqsolo.framework.page.PageBean;
 import com.bqsolo.main.dao.mapper.UserMapper;
 import com.bqsolo.main.entity.UserEntity;
 
@@ -27,17 +29,28 @@ public class UserServiceTest {
 	
 	@Test
 	public final void testPageQuery() {
-		fail("Not yet implemented");
+		Criteria<UserEntity> criteria=new Criteria<UserEntity>();
+		
+		PageBean<UserEntity> pageQuery = userService.pageQuery(criteria);
+		for (UserEntity userEntity : pageQuery.getData()) {
+			System.out.println(userEntity);
+		}
 	}
 
 	@Test
 	public final void testGetCount() {
-		fail("Not yet implemented");
+		Criteria<UserEntity> criteria=new Criteria<UserEntity>();
+		long count = userService.getCount(criteria);
+		System.out.println(count);
 	}
 
 	@Test
 	public final void testQueryForList() {
-		fail("Not yet implemented");
+		Criteria<UserEntity> criteria=new Criteria<UserEntity>();
+		List<UserEntity> queryForList = userService.queryForList(criteria);
+		for (UserEntity userEntity :queryForList) {
+			System.out.println(userEntity);
+		}
 	}
 
 	@Test
@@ -47,13 +60,20 @@ public class UserServiceTest {
 
 	@Test
 	public final void testGetById() {
-		fail("Not yet implemented");
+		UserEntity userEntity = userService.getById(5);
+		System.out.println(userEntity);
 	}
 
 	@Test
 	public final void testGetByIds() {
-		UserEntity userEntity = userMapper.getById(1);
-		assertNotNull(userEntity);
+		List<Integer> list=new ArrayList<Integer>();
+		list.add(4);
+		list.add(5);
+		list.add(6);
+		List<UserEntity> byIds = userService.getByIds(list);
+		for (UserEntity userEntity : byIds) {
+			System.out.println(userEntity);
+		}
 	}
 
 	@Test
@@ -75,22 +95,27 @@ public class UserServiceTest {
 
 	@Test
 	public final void testDoUpdate() {
-		fail("Not yet implemented");
+		userService.doUpdate(new UserEntity(7, "doUpdate", null, null, null, null, null, null, null));
 	}
 
 	@Test
 	public final void testDoDelete() {
-		fail("Not yet implemented");
+		userService.doDelete(7);
 	}
 
 	@Test
 	public final void testDoDeletes() {
-		fail("Not yet implemented");
+		List<Integer> temp=new ArrayList<Integer>();
+		temp.add(1);
+		temp.add(2);
+		temp.add(3);
+		temp.add(4);
+		userService.doDeletes(temp);
 	}
 
 	@Test
 	public final void testDoRemove() {
-		fail("Not yet implemented");
+		userService.doRemove(5);
 	}
 
 }

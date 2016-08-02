@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.bqsolo.main.attribute.CommonAttribute;
+import com.bqsolo.framework.attribute.CommonAttribute;
 import com.bqsolo.main.utils.MailUtil;
 
 

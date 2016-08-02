@@ -1,9 +1,12 @@
 package com.bqsolo.main.service.impl;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+
 import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.page.PageBean;
 import com.bqsolo.main.dao.UserDao;
@@ -107,11 +110,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Integer doRemove(UserEntity user) {
-		if(null == user){
+	public Integer doRemove(Integer id) {
+		if(null == id){
 			return null;
 		}
-		return userDao.doRemove(user);
+		UserEntity userEntity = new UserEntity();
+		userEntity.setId(id);
+		return userDao.doRemove(userEntity);
 	}
 
 	@Override
@@ -130,5 +135,7 @@ public class UserServiceImpl implements UserService {
 		criteria.getPageBean().setData(list);
 		return criteria.getPageBean();
 	}
+
+
 	
 }

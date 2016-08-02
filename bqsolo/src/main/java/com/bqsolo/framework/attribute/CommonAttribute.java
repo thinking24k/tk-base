@@ -1,4 +1,4 @@
-package com.bqsolo.main.attribute;
+package com.bqsolo.framework.attribute;
 
 
 /**
@@ -7,6 +7,12 @@ package com.bqsolo.main.attribute;
  *
  */
 public class CommonAttribute {
+	
+	/** 数据有效 */
+	public static final Integer ISVOID_TRUE=1;
+	/** 数据无效 */
+	public static final Integer ISVOID_FALSE=0;
+	
 	/** 登录的普通用户 */
 	public static final String SESSIONUSER="sessionUser";
 	/** 登录的Admin*/

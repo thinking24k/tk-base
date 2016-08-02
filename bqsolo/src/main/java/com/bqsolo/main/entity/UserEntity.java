@@ -154,4 +154,15 @@ public class UserEntity extends BaseEntity implements Serializable {
 		this.logintime = logintime;
 	}
 
+	@Override
+	public String toString() {
+		return "UserEntity [id=" + id + ", nickname=" + nickname + ", email="
+				+ email + ", mobile=" + mobile + ", password=" + password
+				+ ", img=" + img + ", priority=" + priority + ", sex=" + sex
+				+ ", logintime=" + logintime + ", cuid=" + cuid + ", cuname="
+				+ cuname + ", cdate=" + cdate + ", changeuid=" + changeuid
+				+ ", upuname=" + upuname + ", changedate=" + changedate
+				+ ", isvoid=" + isvoid + "]";
+	}
+
 }
