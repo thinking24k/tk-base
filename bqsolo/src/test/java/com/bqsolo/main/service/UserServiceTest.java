@@ -47,6 +47,9 @@ public class UserServiceTest {
 	@Test
 	public final void testQueryForList() {
 		Criteria<UserEntity> criteria=new Criteria<UserEntity>();
+		UserEntity userEntity2 = new UserEntity();
+		userEntity2.setNickname("A");
+		criteria.setParam(userEntity2);
 		List<UserEntity> queryForList = userService.queryForList(criteria);
 		for (UserEntity userEntity :queryForList) {
 			System.out.println(userEntity);
@@ -55,7 +58,14 @@ public class UserServiceTest {
 
 	@Test
 	public final void testQueryForPageList() {
-		fail("Not yet implemented");
+		Criteria<UserEntity> criteria=new Criteria<UserEntity>();
+		UserEntity userEntity2 = new UserEntity();
+		userEntity2.setNickname("A");
+		criteria.setParam(userEntity2);
+		List<UserEntity> queryForList = userService.queryForList(criteria);
+		for (UserEntity userEntity :queryForList) {
+			System.out.println(userEntity);
+		}
 	}
 
 	@Test

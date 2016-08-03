@@ -1,17 +1,18 @@
 package com.bqsolo.framework.dao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.bqsolo.framework.page.Criteria;
 
 public interface BaseMapper<E, PK> {
-	  public  long getCount(E e);
+	  public  long getCount(Map<String, Object> criteria);
 
-	  public  List<E> queryForList(Criteria<E> criteria);
+	  public  List<E> queryForList(Map<String, Object> criteria);
 
-	  public  List<E> queryForPageList(Criteria<E> criteria);
+	  public  List<E> queryForPageList(Map<String, Object> criteria);
 	  
 	  public  E getById(PK  id);
 	  
@@ -19,7 +20,7 @@ public interface BaseMapper<E, PK> {
 	  
 	  public Integer doAdd(E e);
 	  
-	  public Integer doAddBatch(List<E> list, E e);
+	  public Integer doAddBatch(@Param("list")List<E> list, @Param("e")E e);
 	  
 	  public Integer doUpdate(E e);
 	  

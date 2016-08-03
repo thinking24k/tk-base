@@ -82,7 +82,7 @@ public abstract class BaseEntity implements Serializable {
 	
 	//删除标识  1:正常  0:删除
 	@Column(name = "isvoid")	 
-	protected Integer isvoid=DEFAULT_ISVOID;//默认为0 
+	protected Integer isvoid=DEFAULT_ISVOID;//默认为1
 
 
 

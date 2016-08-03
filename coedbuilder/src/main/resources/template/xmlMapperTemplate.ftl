@@ -24,21 +24,23 @@
 	<insert id="doAddBatch"  parameterType="java.util.List" >
     	insert into ${tableEntity.tableName} (
     		<#list tableEntity.columns as col>
-		      	<#if col.isPrimaryKey != 1 >
-					<if test="null != ${col.classAttr}"  >
+		      	<#if col.isPrimaryKey != 1 && col.columnName !='isvoid' >
+					<if test="null != e.${col.classAttr}"  >
 						 ${col.columnName},
 					</if>
 				</#if>
 			 </#list>
+			 ,isvoid
 		 ) values
-		 <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
-				<#list tableEntity.columns as col>
-					<#if col.isPrimaryKey != 1 >
+		 <foreach collection="list" item="item" index="index"  separator=",">
+				(<#list tableEntity.columns as col>
+					<#if col.isPrimaryKey != 1 && col.columnName !='isvoid' >
 						<if test="null != ${col.classAttr}"  >
 						 	${r"#"}{${col.classAttr}},
 						</if>
 					</#if>
-			 </#list>
+			 </#list>)
+		,${r"#"}{item.isvoid}
 		</foreach>
   	</insert>
   	
@@ -157,7 +159,6 @@
         <include refid="sortSql"/>
         <include refid="com.bqsolo.framework.dao.CommonMapper.pagingLimit"/>
       </if>
-      limit ${r"#"}{page.pageBean.dateNo},${r"#"}{page.pageBean.pageSize}
   </select>
   
  
@@ -165,7 +166,7 @@
   <!--条件查询时 日期默认= 字符默认like 其他默认= 需要进行其他逻辑处理请自行更改-->
   <sql id="sqlCriCondition">
   	<where>
-  	 <include refid="com.bqsolo.framework.dao.CommonMapper.isVoidCondition"/>
+  	 1=1
   	 <#list tableEntity.columns as col>
 			<#if col.classAttrType == 'String' >
 		<if test="null != ${col.classAttr} and ${col.classAttr} != ''">
@@ -192,7 +193,7 @@
         order by
         <choose>
             <when test="sortItemMap == null">
-                creationdate desc
+                cdate desc
             </when>
             <otherwise>
                 <foreach collection="sortItemMap.keySet()" item="field" separator=",">

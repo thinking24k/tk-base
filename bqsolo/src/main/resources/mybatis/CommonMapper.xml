@@ -2,20 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bqsolo.framework.dao.CommonMapper">
   <sql id="isVoidCondition">
-    isvoid = 0
+    isvoid = 1
   </sql>
 
   <sql id="pagingLimit">
-    <if test="extFields != null and extFields.start != null">
-      limit ${extFields.start},
-      <choose>
-        <when test="extFields.limit != null">
-          ${extFields.limit}
-        </when>
-        <otherwise>
-          ${pageSize}
-        </otherwise>
-      </choose>
+    <if test="pageBean != null and pageBean.dateNo != null">
+      limit ${pageBean.dateNo},${pageBean.pageSize}
     </if>
   </sql>
 </mapper>

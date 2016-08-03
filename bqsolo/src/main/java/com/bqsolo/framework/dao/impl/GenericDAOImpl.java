@@ -3,15 +3,18 @@ package com.bqsolo.framework.dao.impl;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
 import com.bqsolo.framework.attribute.CommonAttribute;
+import com.bqsolo.framework.attribute.DaoAttribute;
 import com.bqsolo.framework.dao.GenericDAO;
 import com.bqsolo.framework.dao.mapper.BaseMapper;
 import com.bqsolo.framework.domain.BaseEntity;
 import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.utils.EntityReflectUtil;
+import com.bqsolo.framework.utils.MapUtil;
 
 public class GenericDAOImpl<E extends BaseEntity , PK> implements GenericDAO<E, PK> {
 	
@@ -25,17 +28,32 @@ public class GenericDAOImpl<E extends BaseEntity , PK> implements GenericDAO<E, 
 
 	@Override
 	public long getCount(Criteria<E> criteria) {
-		return getBaseMapper().getCount(criteria.getParam());
+		Map<String, Object> temp = doMapperMap(criteria);
+		return getBaseMapper().getCount(temp);
 	}
 
 	@Override
 	public List<E> queryForList(Criteria<E> criteria) {
-		return getBaseMapper().queryForList(criteria);
+		Map<String, Object> temp = doMapperMap(criteria);
+		return getBaseMapper().queryForList(temp);
+	}
+	//把分页条件转换为map参数
+	private Map<String, Object> doMapperMap(Criteria<E> criteria) {
+		Map<String, Object> temp=MapUtil.getValue(criteria.getParam());
+		temp.put(DaoAttribute.QUERYFORLIST_SORTMAPNAME, criteria.getSortItemMap());
+		if(null !=criteria.getExtFields()){
+			temp.putAll(criteria.getExtFields());
+		}
+		return temp;
 	}
 
 	@Override
 	public List<E> queryForPageList(Criteria<E> criteria) {
-		return getBaseMapper().queryForPageList(criteria);
+		Map<String, Object> temp = doMapperMap(criteria);
+		if(null !=criteria.getPageBean()){
+			temp.put(DaoAttribute.QUERYFORLIST_PAGEBEAN, criteria.getPageBean());
+		}
+		return getBaseMapper().queryForPageList(temp);
 	}
 
 	@Override

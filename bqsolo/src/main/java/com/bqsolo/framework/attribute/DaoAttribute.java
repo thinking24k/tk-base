@@ -15,4 +15,7 @@ public class DaoAttribute {
 	public static final String CHANGEUSERID = "changeuid";
 	public static final String CHANGEDATE = "changedate";
 	public static final String ISVOID = "isvoid";
+	
+	public static final String QUERYFORLIST_SORTMAPNAME = "sortItemMap";
+	public static final String QUERYFORLIST_PAGEBEAN = "pageBean";
 }
