@@ -4,9 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-
-import com.bqsolo.framework.page.Criteria;
-
+/**
+ * 
+ * @ClassName: BaseMapper 
+ * @Description: mybatis公用映射接口
+ * @company 
+ * @author yixiang.deng
+ * @Email 553067271@qq.com
+ * @date 2016年8月4日 
+ * 
+ * @param <E>
+ * @param <PK>
+ */
 public interface BaseMapper<E, PK> {
 	  public  long getCount(Map<String, Object> criteria);
 

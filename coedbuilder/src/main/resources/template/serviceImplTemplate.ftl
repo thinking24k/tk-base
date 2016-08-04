@@ -107,10 +107,12 @@ public class ${tableEntity.className}ServiceImpl implements ${tableEntity.classN
 	}
 
 	@Override
-	public Integer doRemove(${tableEntity.className}Entity ${lowercaseClassName}) {
+	public Integer doRemove(Integer id) {
 		if(null == ${lowercaseClassName}){
 			return null;
 		}
+		${tableEntity.className}Entity ${lowercaseClassName}=new ${tableEntity.className}Entity();
+		${lowercaseClassName}.setId(id);
 		return ${lowercaseClassName}Dao.doRemove(${lowercaseClassName});
 	}
 

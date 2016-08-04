@@ -1,6 +1,6 @@
 package ${basePackage}.service;
 
-import com.bqsolo.framework.dao.GenericDAO;
+import com.bqsolo.framework.service.BaseService;
 import com.bqsolo.framework.page.PageBean;
 import com.bqsolo.framework.page.Criteria;
 import ${basePackage}.entity.${entityName};
@@ -14,7 +14,7 @@ import ${basePackage}.entity.${entityName};
 *  
 */ 
 
-public interface ${tableEntity.className}Service extends GenericDAO<${entityName}, Integer> {
+public interface ${tableEntity.className}Service extends BaseService<${entityName}, Integer> {
 	
 
 	public  PageBean<${entityName}> pageQuery(Criteria<${entityName}> criteria);

@@ -1,7 +1,7 @@
 package com.bqsolo.main.service;
 
-import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.page.PageBean;
+import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.service.BaseService;
 import com.bqsolo.main.entity.UserEntity;
 /** 
@@ -10,7 +10,7 @@ import com.bqsolo.main.entity.UserEntity;
 * @company 
 * @author yixiang.deng
 * @Email 553067271@qq.com
-* @date 2016年08月01日
+* @date 2016年08月04日
 *  
 */ 
 

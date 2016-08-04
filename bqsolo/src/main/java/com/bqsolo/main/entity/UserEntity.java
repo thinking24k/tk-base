@@ -21,21 +21,20 @@ import com.bqsolo.framework.domain.BaseEntity;
 * @company 
 * @author yixiang.deng
 * @Email 553067271@qq.com
-* @date 2016年08月01日
+* @date 2016年08月04日
 *  
 */ 
 @Entity(name = "UserEntity")
 @Table(name = "user")
 public class UserEntity extends BaseEntity implements Serializable {
 
-	private static final long serialVersionUID =  -6364219986584834918L;
+	private static final long serialVersionUID =  -8739369808326070249L;
 
 
 	public UserEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 	public UserEntity(Integer id, String nickname, String email, String mobile,
 			String password, String img, Double priority, Integer sex,
 			Integer logintime) {
@@ -50,7 +49,6 @@ public class UserEntity extends BaseEntity implements Serializable {
 		this.sex = sex;
 		this.logintime = logintime;
 	}
-
 	//主键
 	@Id	
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -152,17 +150,6 @@ public class UserEntity extends BaseEntity implements Serializable {
 	/**登陆时间*/
 	public void setLogintime(Integer logintime) {
 		this.logintime = logintime;
-	}
-
-	@Override
-	public String toString() {
-		return "UserEntity [id=" + id + ", nickname=" + nickname + ", email="
-				+ email + ", mobile=" + mobile + ", password=" + password
-				+ ", img=" + img + ", priority=" + priority + ", sex=" + sex
-				+ ", logintime=" + logintime + ", cuid=" + cuid + ", cuname="
-				+ cuname + ", cdate=" + cdate + ", changeuid=" + changeuid
-				+ ", upuname=" + upuname + ", changedate=" + changedate
-				+ ", isvoid=" + isvoid + "]";
 	}
 
 }

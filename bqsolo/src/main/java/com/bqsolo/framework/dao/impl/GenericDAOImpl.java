@@ -116,6 +116,7 @@ public class GenericDAOImpl<E extends BaseEntity , PK> implements GenericDAO<E, 
 	* @param userFieldStr
 	* @param dateFieldStr
 	*/
+	@SuppressWarnings("unused")
 	private void autoPushBasicData(E entity,String userFieldStr,String dateFieldStr){
 
 		Field userIdField = EntityReflectUtil.getField(entity.getClass(),userFieldStr);

@@ -1,4 +1,4 @@
-package ${basePackage}.web.controller;
+package com.bqsolo.main.web.controller;
 
 import java.util.List;
 
@@ -18,43 +18,43 @@ import com.bqsolo.framework.conttroller.BaseController;
 import com.bqsolo.framework.domain.MessageDTO;
 import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.page.PageBean;
-import ${basePackage}.entity.${entityName};
-import ${basePackage}.service.${tableEntity.className}Service;
+import com.bqsolo.main.entity.UserEntity;
+import com.bqsolo.main.service.UserService;
 
 /** 
-* @ClassName: ${tableEntity.className}Controller 
-* @Description: 本类是由代码生成器自动生成${tableEntity.className}Entity逻辑(Controller)层
+* @ClassName: UserController 
+* @Description: 本类是由代码生成器自动生成UserEntity逻辑(Controller)层
 * @company 
-* @author ${builderAuthor}
-* @Email ${builderEmail}
-* @date ${nowDate}
+* @author yixiang.deng
+* @Email 553067271@qq.com
+* @date 2016年08月04日
 *  
 */ 
 @Controller
-@RequestMapping("<#if null != ${platform}>/${platform}<#if><#if null != ${moduleName}>/${moduleName}<#if>/${simpleEntityName}.cmd")
-public class ${tableEntity.className}Controller extends BaseController {
+@RequestMapping("/main/user.cmd")
+public class UserController extends BaseController {
 	//日志
-	private static Logger logger = Logger.getLogger(${tableEntity.className}Controller.class);
+	private static Logger logger = Logger.getLogger(UserController.class);
 
 	@Resource
-	private ${tableEntity.className}Service ${lowercaseClassName}Service;
+	private UserService userService;
 
 	/** 
 	* @Title: doAdd 
 	* @Description: 新增操作
-	* @param ${entityParName}  Post提交
+	* @param userEntity  Post提交
 	* @param request
 	* @param response
 	* @throws BusinessException  
 	*/ 
 	@RequestMapping(value="/doadd",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO doAdd(${entityName} ${entityParName},HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody MessageDTO doAdd(UserEntity userEntity,HttpServletRequest request,HttpServletResponse response) {
 		// 1.服务器校验
-		if(!doNullValidation(${entityParName})){ 
+		if(!doNullValidation(userEntity)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		//2.业务层调用
-		Integer doAdd = ${lowercaseClassName}Service.doAdd(${entityParName});
+		Integer doAdd = userService.doAdd(userEntity);
 		//3.返回JSON数据
 		return this.responseData(true, doAdd,  MessageAttribute.COMMON_SELECT_VAL_SUC);
 	}
@@ -62,22 +62,22 @@ public class ${tableEntity.className}Controller extends BaseController {
 	
 	/**
 	 * @Title: 更新操作
-	 * @Description: 更新${tableEntity.className}Entity 表单对象
-	 * @param ${entityParName}
+	 * @Description: 更新UserEntity 表单对象
+	 * @param userEntity
 	 *            表单DTO对象
 	 * @param response
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/doupdate",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO doUpdate(${entityName} ${entityParName},HttpServletRequest request,HttpServletResponse response) {	
+	public @ResponseBody MessageDTO doUpdate(UserEntity userEntity,HttpServletRequest request,HttpServletResponse response) {	
 		// 1.服务器校验
-		if(!doNullValidation(${entityParName})){ 
+		if(!doNullValidation(userEntity)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		//2.验证
 		
 		// 3.校验成功，进行业务处理
-		Integer doUpdate = ${lowercaseClassName}Service.doUpdate(${entityParName});
+		Integer doUpdate = userService.doUpdate(userEntity);
 		return this.responseData(true, doUpdate, MessageAttribute.COMMON_UPDATE_VAL_SUC);
 	}	
 
@@ -106,7 +106,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		// 2.校验成功，进行业务处理
-		Integer doDelete = ${lowercaseClassName}Service.doDelete(id);
+		Integer doDelete = userService.doDelete(id);
 		return this.responseData(true, doDelete,  MessageAttribute.COMMON_DELETE_VAL_SUC);
 	}	
 	
@@ -132,7 +132,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 			return this.responseData(false, null,  MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		// 2.校验成功，进行业务处理
-		Integer doRemove = ${lowercaseClassName}Service.doRemove(id);
+		Integer doRemove = userService.doRemove(id);
 		return this.responseData(true, doRemove, MessageAttribute.COMMON_REMOVE_VAL_SUC);	
 	}
 	
@@ -166,8 +166,8 @@ public class ${tableEntity.className}Controller extends BaseController {
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		// 2.校验成功，进行业务处理
-		${entityName} ${entityParName} = ${lowercaseClassName}Service.getById(id);
-		return this.responseData(true, ${entityParName},MessageAttribute.COMMON_SELECT_VAL_SUC);
+		UserEntity userEntity = userService.getById(id);
+		return this.responseData(true, userEntity,MessageAttribute.COMMON_SELECT_VAL_SUC);
 	}	
 	
 	
@@ -179,12 +179,12 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/pagequery",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO pageQuery(Criteria<${entityName}>  ${lowercaseClassName}Criteria){
+	public @ResponseBody MessageDTO pageQuery(Criteria<UserEntity>  userCriteria){
 		// 1.服务器校验
-		if(!doNullValidation(${lowercaseClassName}Criteria)){ 
+		if(!doNullValidation(userCriteria)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
-		PageBean<${entityName}> pageQuery = ${lowercaseClassName}Service.pageQuery(${lowercaseClassName}Criteria);
+		PageBean<UserEntity> pageQuery = userService.pageQuery(userCriteria);
 		return this.responseData(true, pageQuery,MessageAttribute.COMMON_SELECT_VAL_SUC);		
 
 	}	
@@ -197,23 +197,23 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/queryforlist",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO queryForList(Criteria<${entityName}>  ${lowercaseClassName}Criteria) {
+	public @ResponseBody MessageDTO queryForList(Criteria<UserEntity>  userCriteria) {
 		// 1.服务器校验
-		if(!doNullValidation(${lowercaseClassName}Criteria)){ 
+		if(!doNullValidation(userCriteria)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		//查询条件
-		List<${entityName}> ${lowercaseClassName}EntityList = ${lowercaseClassName}Service.queryForList(${lowercaseClassName}Criteria);
-		return this.responseData(true, ${lowercaseClassName}EntityList,MessageAttribute.COMMON_SELECT_VAL_SUC);				
+		List<UserEntity> userEntityList = userService.queryForList(userCriteria);
+		return this.responseData(true, userEntityList,MessageAttribute.COMMON_SELECT_VAL_SUC);				
 	}		
 
     
 	
 	
-	private boolean doUpdateValidation(${entityName} ${entityParName}) {
+	private boolean doUpdateValidation(UserEntity userEntity) {
 		boolean status = true;
 		// 1.空对象校验
-		if (${entityParName} == null) {
+		if (userEntity == null) {
 			status = false;
 		}
 		return status;
@@ -228,10 +228,10 @@ public class ${tableEntity.className}Controller extends BaseController {
 	* @param response
 	* @return
 	*/
-	protected <T> boolean doAddValidation(${entityName} ${entityParName} ) {
+	protected <T> boolean doAddValidation(UserEntity userEntity ) {
 		boolean status = true;
 		// 1.空对象校验
-		if (${entityParName} == null) {
+		if (userEntity == null) {
 			status = false;
 			
 		}

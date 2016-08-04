@@ -29,7 +29,16 @@ public class MessageDTO<T> implements Serializable {
     private String msgKey;
     private T content;
     
-    @JsonCreator
+    
+    public MessageDTO(int status, T content, String message) {
+		super();
+		this.status = status;
+		this.message = message;
+		this.content = content;
+	}
+
+
+	@JsonCreator
     public MessageDTO(@JsonProperty("content") T content) {
     	this.content = content;
     }   

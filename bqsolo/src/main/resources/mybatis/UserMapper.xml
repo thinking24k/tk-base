@@ -20,9 +20,7 @@
 	</resultMap>
 
 	<sql id="allColumn">
-		id,nickname,email,mobile,password,img,priority,sex,logintime
-		<!-- ,cuid,cdate,changeuid,changedate -->
-		,isvoid
+		id,nickname,email,mobile,password,img,priority,sex,logintime,cuid,cdate,changeuid,changedate,isvoid
 	</sql>
 
 	<insert id="doAdd"  parameterType="com.bqsolo.main.entity.UserEntity" >
@@ -57,7 +55,7 @@
  #{isvoid})
   	</insert>
   	
-	<insert id="doAddBatch"   >
+	<insert id="doAddBatch"  parameterType="java.util.List" >
     	insert into user (
 					<if test="null != e.nickname"  >
 						 nickname,
@@ -75,7 +73,7 @@
 						 img,
 					</if>
 					<if test="null != e.priority"  >
-						priority,
+						 priority,
 					</if>
 					<if test="null != e.sex"  >
 						 sex,
@@ -95,50 +93,61 @@
 					<if test="null != e.changedate"  >
 						 changedate,
 					</if>
-					<if test="null != e.isvoid"  >
-						 isvoid
-					</if>
+			 ,isvoid
 		 ) values
-		 <foreach collection="list" item="item" index="index" separator=",">
-					(<if test="null != item.nickname"  >
-						 #{item.nickname},
-					</if>
-					<if test="null != item.email"  >
-						 #{item.email},
-					</if>
-					<if test="null != item.mobile"  >
-						#{item.mobile},
-					</if>
-					<if test="null != item.password"  >
-						#{item.password},
-					</if>
-					<if test="null != item.img"  >
-						#{item.img},
-					</if>
-					<if test="null != item.priority"  >
-						#{item.priority},
-					</if>
-					<if test="null != item.sex"  >
-						#{item.sex},
-					</if>
-					<if test="null != item.logintime"  >
-						 #{item.logintime},
-					</if>
-					<if test="null != item.cuid"  >
-						#{item.cuid},
-					</if>
-					<if test="null != item.cdate"  >
-						#{item.cdate},
-					</if>
-					<if test="null != item.changeuid"  >
-						 #{item.changeuid},
-					</if>
-					<if test="null != item.changedate"  >
-						#{item.changedate},
-					</if>
-					<if test="null != item.isvoid"  >
-						#{item.isvoid}
-					</if>)
+		 <foreach collection="list" item="item" index="index"  separator=",">
+				(
+			 
+						<if test="null != nickname"  >
+						 	#{nickname},
+						</if>
+			 
+						<if test="null != email"  >
+						 	#{email},
+						</if>
+			 
+						<if test="null != mobile"  >
+						 	#{mobile},
+						</if>
+			 
+						<if test="null != password"  >
+						 	#{password},
+						</if>
+			 
+						<if test="null != img"  >
+						 	#{img},
+						</if>
+			 
+						<if test="null != priority"  >
+						 	#{priority},
+						</if>
+			 
+						<if test="null != sex"  >
+						 	#{sex},
+						</if>
+			 
+						<if test="null != logintime"  >
+						 	#{logintime},
+						</if>
+			 
+						<if test="null != cuid"  >
+						 	#{cuid},
+						</if>
+			 
+						<if test="null != cdate"  >
+						 	#{cdate},
+						</if>
+			 
+						<if test="null != changeuid"  >
+						 	#{changeuid},
+						</if>
+			 
+						<if test="null != changedate"  >
+						 	#{changedate},
+						</if>
+			 
+			 )
+		,#{item.isvoid}
 		</foreach>
   	</insert>
   	
@@ -192,7 +201,7 @@
 	 </update>
 	 
      	
-  	<delete id="doDelete" parameterType="java.lang.Integer" >
+  	<delete id="doDelete"  >
   		delete  from 
   			user
 	  	<where> 
@@ -214,7 +223,7 @@
 		</where>
     </delete>
     
-    <update id="doRemove"  parameterType="com.bqsolo.main.entity.UserEntity">
+    <update id="doRemove" parameterType="com.bqsolo.main.entity.UserEntity"  >
     	update 
     		user
     	set isvoid = 0
@@ -269,8 +278,11 @@
       select
       <include refid="allColumn" />
       from user
+      <if test="_parameter != null">
         <include refid="sqlCriCondition"/>
         <include refid="sortSql"/>
+        <include refid="com.bqsolo.framework.dao.CommonMapper.pagingLimit"/>
+      </if>
   </select>
   
   <select id="queryForPageList" resultMap="BaseResultMap">
