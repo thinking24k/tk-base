@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bqsolo.main.dao.mapper.UserMapper" >
+<mapper namespace="com.bqsolo.main.dao.mapper.AdminMapper">
 	<!-- 注意：1. BaseResultMap 与底层架构有关,除数据库变更.严禁人为修改. -->
-	<resultMap id="BaseResultMap"  type="com.bqsolo.main.entity.UserEntity">
+	<resultMap id="BaseResultMap"  type="com.bqsolo.main.entity.AdminEntity">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
-		<result column="password" property="password" jdbcType="VARCHAR" />
-		<result column="img" property="img" jdbcType="VARCHAR" />
-		<result column="priority" property="priority" jdbcType="DOUBLE" />
-		<result column="sex" property="sex" jdbcType="INTEGER" />
-		<result column="logintime" property="logintime" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userpass" property="userpass" jdbcType="VARCHAR" />
+		<result column="useremail" property="useremail" jdbcType="VARCHAR" />
+		<result column="logintime" property="logintime" jdbcType="TIMESTAMP" />
+		<result column="loginip" property="loginip" jdbcType="VARCHAR" />
 		<result column="cuid" property="cuid" jdbcType="INTEGER" />
 		<result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
 		<result column="changeuid" property="changeuid" jdbcType="INTEGER" />
@@ -20,33 +17,27 @@
 	</resultMap>
 
 	<sql id="allColumn">
-		id,nickname,email,mobile,password,img,priority,sex,logintime,cuid,cdate,changeuid,changedate,isvoid
+		id,username,userpass,useremail,logintime,loginip,cuid,cdate,changeuid,changedate,isvoid
 	</sql>
 
-	<insert id="doAdd"  parameterType="com.bqsolo.main.entity.UserEntity" >
-    	 insert into user ( 
- <if test="null != nickname"  >nickname,</if>
-<if test="null != email"  >email,</if>
-<if test="null != mobile"  >mobile,</if>
-<if test="null != password"  >password,</if>
-<if test="null != img"  >img,</if>
-<if test="null != priority"  >priority,</if>
-<if test="null != sex"  >sex,</if>
+	<insert id="doAdd"  parameterType="com.bqsolo.main.entity.AdminEntity" >
+    	 insert into admin ( 
+ <if test="null != username"  >username,</if>
+<if test="null != userpass"  >userpass,</if>
+<if test="null != useremail"  >useremail,</if>
 <if test="null != logintime"  >logintime,</if>
+<if test="null != loginip"  >loginip,</if>
 <if test="null != cuid"  >cuid,</if>
 <if test="null != cdate"  >cdate,</if>
 <if test="null != changeuid"  >changeuid,</if>
 <if test="null != changedate"  >changedate,</if>
  
  isvoid) values ( 
-<if test="null != nickname"  >#{nickname},</if>
-<if test="null != email"  >#{email},</if>
-<if test="null != mobile"  >#{mobile},</if>
-<if test="null != password"  >#{password},</if>
-<if test="null != img"  >#{img},</if>
-<if test="null != priority"  >#{priority},</if>
-<if test="null != sex"  >#{sex},</if>
+<if test="null != username"  >#{username},</if>
+<if test="null != userpass"  >#{userpass},</if>
+<if test="null != useremail"  >#{useremail},</if>
 <if test="null != logintime"  >#{logintime},</if>
+<if test="null != loginip"  >#{loginip},</if>
 <if test="null != cuid"  >#{cuid},</if>
 <if test="null != cdate"  >#{cdate},</if>
 <if test="null != changeuid"  >#{changeuid},</if>
@@ -56,30 +47,21 @@
   	</insert>
   	
 	<insert id="doAddBatch"  parameterType="java.util.List" >
-    	insert into user (
-					<if test="null != e.nickname"  >
-						 nickname,
+    	insert into admin (
+					<if test="null != e.username"  >
+						 username,
 					</if>
-					<if test="null != e.email"  >
-						 email,
+					<if test="null != e.userpass"  >
+						 userpass,
 					</if>
-					<if test="null != e.mobile"  >
-						 mobile,
-					</if>
-					<if test="null != e.password"  >
-						 password,
-					</if>
-					<if test="null != e.img"  >
-						 img,
-					</if>
-					<if test="null != e.priority"  >
-						 priority,
-					</if>
-					<if test="null != e.sex"  >
-						 sex,
+					<if test="null != e.useremail"  >
+						 useremail,
 					</if>
 					<if test="null != e.logintime"  >
 						 logintime,
+					</if>
+					<if test="null != e.loginip"  >
+						 loginip,
 					</if>
 					<if test="null != e.cuid"  >
 						 cuid,
@@ -93,41 +75,29 @@
 					<if test="null != e.changedate"  >
 						 changedate,
 					</if>
-			 isvoid
+			 ,isvoid
 		 ) values
 		 <foreach collection="list" item="item" index="index"  separator=",">
 				(
 			 
-						<if test="null != item.nickname"  >
-						 	#{item.nickname},
+						<if test="null != item.username"  >
+						 	#{item.username},
 						</if>
 			 
-						<if test="null != item.email"  >
-						 	#{item.email},
+						<if test="null != item.userpass"  >
+						 	#{item.userpass},
 						</if>
 			 
-						<if test="null != item.mobile"  >
-						 	#{item.mobile},
-						</if>
-			 
-						<if test="null != item.password"  >
-						 	#{item.password},
-						</if>
-			 
-						<if test="null != item.img"  >
-						 	#{item.img},
-						</if>
-			 
-						<if test="null != item.priority"  >
-						 	#{item.priority},
-						</if>
-			 
-						<if test="null != item.sex"  >
-						 	#{item.sex},
+						<if test="null != item.useremail"  >
+						 	#{item.useremail},
 						</if>
 			 
 						<if test="null != item.logintime"  >
 						 	#{item.logintime},
+						</if>
+			 
+						<if test="null != item.loginip"  >
+						 	#{item.loginip},
 						</if>
 			 
 						<if test="null != item.cuid"  >
@@ -147,37 +117,28 @@
 						</if>
 			 
 			 )
-		#{item.isvoid}
+		,#{item.isvoid}
 		</foreach>
   	</insert>
   	
-	<update id="doUpdate"   parameterType="com.bqsolo.main.entity.UserEntity" >
+	<update id="doUpdate"   parameterType="com.bqsolo.main.entity.AdminEntity" >
 	    update 
-	    	user
+	    	admin
 	    <set>
-					<if test="null != nickname"  >
-						 nickname = #{nickname,jdbcType=VARCHAR},
+					<if test="null != username"  >
+						 username = #{username,jdbcType=VARCHAR},
 					</if>
-					<if test="null != email"  >
-						 email = #{email,jdbcType=VARCHAR},
+					<if test="null != userpass"  >
+						 userpass = #{userpass,jdbcType=VARCHAR},
 					</if>
-					<if test="null != mobile"  >
-						 mobile = #{mobile,jdbcType=VARCHAR},
-					</if>
-					<if test="null != password"  >
-						 password = #{password,jdbcType=VARCHAR},
-					</if>
-					<if test="null != img"  >
-						 img = #{img,jdbcType=VARCHAR},
-					</if>
-					<if test="null != priority"  >
-						 priority = #{priority,jdbcType=DOUBLE},
-					</if>
-					<if test="null != sex"  >
-						 sex = #{sex,jdbcType=INTEGER},
+					<if test="null != useremail"  >
+						 useremail = #{useremail,jdbcType=VARCHAR},
 					</if>
 					<if test="null != logintime"  >
-						 logintime = #{logintime,jdbcType=INTEGER},
+						 logintime = #{logintime,jdbcType=TIMESTAMP},
+					</if>
+					<if test="null != loginip"  >
+						 loginip = #{loginip,jdbcType=VARCHAR},
 					</if>
 					<if test="null != cuid"  >
 						 cuid = #{cuid,jdbcType=INTEGER},
@@ -203,7 +164,7 @@
      	
   	<delete id="doDelete"  >
   		delete  from 
-  			user
+  			admin
 	  	<where> 
 	  		id 
 	  	=
@@ -213,7 +174,7 @@
     
   	<delete id="doDeletes"  parameterType="java.util.List" >
   		delete  from 
-  			user
+  			admin
 	  	<where> 
 	  		id 
 	  	in 
@@ -223,9 +184,9 @@
 		</where>
     </delete>
     
-    <update id="doRemove" parameterType="com.bqsolo.main.entity.UserEntity"  >
+    <update id="doRemove" parameterType="com.bqsolo.main.entity.AdminEntity"  >
     	update 
-    		user
+    		admin
     	set isvoid = 0
 	    <if test="changeuid != null" >
 	      ,changeuid = #{changeuid}
@@ -247,7 +208,7 @@
 	    select
       		<include refid="allColumn" />
       	from 
-      		user
+      		admin
 	    <where>
 		    id = #{id}
 		</where>
@@ -257,7 +218,7 @@
 	  	select
       		<include refid="allColumn" />
       	from 
-      		user
+      		admin
 	  	<where> 
 	  		id 
 	  	in 
@@ -268,7 +229,7 @@
   	</select>
   
    <select id="getCount" resultType="java.lang.Long">
-      select count(*) from user
+      select count(*) from admin
       <if test="_parameter != null">
           <include refid="sqlCriCondition"/>
       </if>
@@ -277,7 +238,7 @@
   <select id="queryForList" resultMap="BaseResultMap">
       select
       <include refid="allColumn" />
-      from user
+      from admin
       <if test="_parameter != null">
         <include refid="sqlCriCondition"/>
         <include refid="sortSql"/>
@@ -288,7 +249,7 @@
   <select id="queryForPageList" resultMap="BaseResultMap">
       select
       <include refid="allColumn" />
-      from user
+      from admin
       <if test="_parameter != null">
         <include refid="sqlCriCondition"/>
         <include refid="sortSql"/>
@@ -305,30 +266,21 @@
 		<if test="null != id">
 			AND id = #{id,jdbcType=INTEGER}
 		</if>	
-		<if test="null != nickname and nickname != ''">
-			AND nickname LIKE CONCAT('%', #{nickname,jdbcType=VARCHAR}, '%')
+		<if test="null != username and username != ''">
+			AND username LIKE CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
 		</if>
-		<if test="null != email and email != ''">
-			AND email LIKE CONCAT('%', #{email,jdbcType=VARCHAR}, '%')
+		<if test="null != userpass and userpass != ''">
+			AND userpass LIKE CONCAT('%', #{userpass,jdbcType=VARCHAR}, '%')
 		</if>
-		<if test="null != mobile and mobile != ''">
-			AND mobile LIKE CONCAT('%', #{mobile,jdbcType=VARCHAR}, '%')
+		<if test="null != useremail and useremail != ''">
+			AND useremail LIKE CONCAT('%', #{useremail,jdbcType=VARCHAR}, '%')
 		</if>
-		<if test="null != password and password != ''">
-			AND password LIKE CONCAT('%', #{password,jdbcType=VARCHAR}, '%')
+		<if test="null != logintime and logintime != ''">
+			AND logintime = #{logintime,jdbcType=TIMESTAMP}
 		</if>
-		<if test="null != img and img != ''">
-			AND img LIKE CONCAT('%', #{img,jdbcType=VARCHAR}, '%')
+		<if test="null != loginip and loginip != ''">
+			AND loginip LIKE CONCAT('%', #{loginip,jdbcType=VARCHAR}, '%')
 		</if>
-		<if test="null != priority">
-			AND priority = #{priority,jdbcType=DOUBLE}
-		</if>	
-		<if test="null != sex">
-			AND sex = #{sex,jdbcType=INTEGER}
-		</if>	
-		<if test="null != logintime">
-			AND logintime = #{logintime,jdbcType=INTEGER}
-		</if>	
 		<if test="null != cuid">
 			AND cuid = #{cuid,jdbcType=INTEGER}
 		</if>	
@@ -356,29 +308,20 @@
             <otherwise>
                 <foreach collection="sortItemMap.keySet()" item="field" separator=",">
                     <choose>
-						<when test="field == 'nickname'">
-			                 nickname ${sortItemMap.nickname}
+						<when test="field == 'username'">
+			                 username ${sortItemMap.username}
 			            </when>
-						<when test="field == 'email'">
-			                 email ${sortItemMap.email}
+						<when test="field == 'userpass'">
+			                 userpass ${sortItemMap.userpass}
 			            </when>
-						<when test="field == 'mobile'">
-			                 mobile ${sortItemMap.mobile}
-			            </when>
-						<when test="field == 'password'">
-			                 password ${sortItemMap.password}
-			            </when>
-						<when test="field == 'img'">
-			                 img ${sortItemMap.img}
-			            </when>
-						<when test="field == 'priority'">
-			                 priority ${sortItemMap.priority}
-			            </when>
-						<when test="field == 'sex'">
-			                 sex ${sortItemMap.sex}
+						<when test="field == 'useremail'">
+			                 useremail ${sortItemMap.useremail}
 			            </when>
 						<when test="field == 'logintime'">
 			                 logintime ${sortItemMap.logintime}
+			            </when>
+						<when test="field == 'loginip'">
+			                 loginip ${sortItemMap.loginip}
 			            </when>
 						<when test="field == 'cuid'">
 			                 cuid ${sortItemMap.cuid}

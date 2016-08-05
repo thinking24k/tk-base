@@ -30,17 +30,17 @@
 					</if>
 				</#if>
 			 </#list>
-			 ,isvoid
+			 isvoid
 		 ) values
 		 <foreach collection="list" item="item" index="index"  separator=",">
 				(<#list tableEntity.columns as col>
 					<#if col.isPrimaryKey != 1 && col.columnName !='isvoid' >
-						<if test="null != ${col.classAttr}"  >
-						 	${r"#"}{${col.classAttr}},
+						<if test="null != item.${col.classAttr}"  >
+						 	${r"#"}{item.${col.classAttr}},
 						</if>
 					</#if>
 			 </#list>)
-		,${r"#"}{item.isvoid}
+		${r"#"}{item.isvoid}
 		</foreach>
   	</insert>
   	

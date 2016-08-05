@@ -26,7 +26,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
-import com.bqsolo.main.utils.StringUtils;
+import com.bqsolo.main.utils.StringUtil;
 
 
 /** 
@@ -182,21 +182,21 @@ public class HttpUtil {
 		Map<String,String> responseData = new HashMap<String, String>();
 		String urlNameString = strURL;
 
-	    if(StringUtils.isNotEmpty(getParams)){
+	    if(StringUtil.isNotEmpty(getParams)){
 	    	urlNameString += "?" + getParams;
 	    }
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpRequestBase httpMethod;
 	    if(isHttps){
 	    	httpclient = HttpClientConnectionManager.getSSLInstance(httpclient);
-	    	if(!StringUtils.isEmpty(postParams)){
+	    	if(!StringUtil.isEmpty(postParams)){
 	    		httpMethod = HttpClientConnectionManager.getPostMethod(urlNameString);
 	    	}else{
 	    		httpMethod = HttpClientConnectionManager.getGetMethod(urlNameString);
 	    	}
 	    }else{
 		    //以Post方法提交
-		    if(!StringUtils.isEmpty(postParams)){
+		    if(!StringUtil.isEmpty(postParams)){
 		    	httpMethod = new HttpPost(urlNameString);
 			    if(postParams!=null){
 			    	((HttpPost)httpMethod).setEntity(new StringEntity(postParams,"utf-8"));  
@@ -348,12 +348,12 @@ public class HttpUtil {
  	   if(header!=null){
 	           String cookieValue = header.getValue();
 	           logger.info("cookie value:"+cookieValue);
-	           if(StringUtils.isNotEmpty(cookieValue)){
+	           if(StringUtil.isNotEmpty(cookieValue)){
 	        	   sessionId=cookieValue.substring(0, cookieValue.indexOf(";")); 
 	           }		    		   
  	   }
      //获取sessionid完成		
- 	   if(StringUtils.isNotEmpty(sessionId)&&sessionId.indexOf("=")>-1){
+ 	   if(StringUtil.isNotEmpty(sessionId)&&sessionId.indexOf("=")>-1){
  		  sessionId = sessionId.substring(sessionId.indexOf("=") + 1);
  	   }
  	   return sessionId;
@@ -373,7 +373,7 @@ public class HttpUtil {
 		}
 		//1.处理 JsessionID
 		String jsessionId = httpUtilBean.getJsessionid();
-		if(StringUtils.isNotEmpty(jsessionId)){
+		if(StringUtil.isNotEmpty(jsessionId)){
 			jsessionId= "JSESSIONID="+jsessionId;
 			//httpMethod.setHeader("Cookie",jsessionId);
 			httpMethod.addHeader("Cookie",jsessionId);

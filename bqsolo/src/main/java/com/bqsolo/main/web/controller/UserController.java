@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bqsolo.framework.attribute.MessageAttribute;
-import com.bqsolo.framework.conttroller.BaseController;
 import com.bqsolo.framework.domain.MessageDTO;
 import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.page.PageBean;
+import com.bqsolo.framework.web.conttroller.BaseController;
 import com.bqsolo.main.entity.UserEntity;
 import com.bqsolo.main.service.UserService;
 
@@ -30,7 +30,7 @@ import com.bqsolo.main.service.UserService;
 * @date 2016年08月04日
 *  
 */ 
-@Controller
+@Controller("UserController")
 @RequestMapping("/main/user.cmd")
 public class UserController extends BaseController {
 	//日志
@@ -145,7 +145,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value="/doselect",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO doSelect(Integer id, HttpServletResponse response) {
-		return selectById(id,response);
+		return selectById(id);
 	}
 	
 	/**
@@ -157,10 +157,10 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("/doselectbyid/{id}")
 	public @ResponseBody MessageDTO doSelectById(@PathVariable("id") Integer id) {
-		return selectById(id,response);
+		return selectById(id);
 	}	
 	
-	private MessageDTO selectById(Integer id,HttpServletResponse response) {
+	private MessageDTO selectById(Integer id) {
 		// 1.服务器校验
 		if(!doNullValidation(id)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);

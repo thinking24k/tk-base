@@ -1,4 +1,4 @@
-package ${basePackage}.web.controller;
+package com.bqsolo.main.web.controller;
 
 import java.util.List;
 
@@ -18,43 +18,43 @@ import com.bqsolo.framework.web.conttroller.BaseController;
 import com.bqsolo.framework.domain.MessageDTO;
 import com.bqsolo.framework.page.Criteria;
 import com.bqsolo.framework.page.PageBean;
-import ${basePackage}.entity.${entityName};
-import ${basePackage}.service.${tableEntity.className}Service;
+import com.bqsolo.main.entity.AdminEntity;
+import com.bqsolo.main.service.AdminService;
 
 /** 
-* @ClassName: ${tableEntity.className}Controller 
-* @Description: 本类是由代码生成器自动生成${tableEntity.className}Entity逻辑(Controller)层
+* @ClassName: AdminController 
+* @Description: 本类是由代码生成器自动生成AdminEntity逻辑(Controller)层
 * @company 
-* @author ${builderAuthor}
-* @Email ${builderEmail}
-* @date ${nowDate}
+* @author yixiang.deng
+* @Email 553067271@qq.com
+* @date 2016年08月05日
 *  
 */ 
-@Controller
-@RequestMapping("<#if platform?? && platform!=''>/${platform}</#if><#if moduleName?? && moduleName!=''>/${moduleName}</#if>/${simpleEntityName}.cmd")
-public class ${tableEntity.className}Controller extends BaseController {
+@Controller("AdminController")
+@RequestMapping("/main/admin.cmd")
+public class AdminController extends BaseController {
 	//日志
-	private static Logger logger = Logger.getLogger(${tableEntity.className}Controller.class);
+	private static Logger logger = Logger.getLogger(AdminController.class);
 
 	@Resource
-	private ${tableEntity.className}Service ${lowercaseClassName}Service;
+	private AdminService adminService;
 
 	/** 
 	* @Title: doAdd 
 	* @Description: 新增操作
-	* @param ${entityParName}  Post提交
+	* @param adminEntity  Post提交
 	* @param request
 	* @param response
 	* @throws BusinessException  
 	*/ 
 	@RequestMapping(value="/doadd",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO doAdd(${entityName} ${entityParName},HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody MessageDTO doAdd(AdminEntity adminEntity,HttpServletRequest request,HttpServletResponse response) {
 		// 1.服务器校验
-		if(!doNullValidation(${entityParName})){ 
+		if(!doNullValidation(adminEntity)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		//2.业务层调用
-		Integer doAdd = ${lowercaseClassName}Service.doAdd(${entityParName});
+		Integer doAdd = adminService.doAdd(adminEntity);
 		//3.返回JSON数据
 		return this.responseData(true, doAdd,  MessageAttribute.COMMON_SELECT_VAL_SUC);
 	}
@@ -62,22 +62,22 @@ public class ${tableEntity.className}Controller extends BaseController {
 	
 	/**
 	 * @Title: 更新操作
-	 * @Description: 更新${tableEntity.className}Entity 表单对象
-	 * @param ${entityParName}
+	 * @Description: 更新AdminEntity 表单对象
+	 * @param adminEntity
 	 *            表单DTO对象
 	 * @param response
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/doupdate",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO doUpdate(${entityName} ${entityParName},HttpServletRequest request,HttpServletResponse response) {	
+	public @ResponseBody MessageDTO doUpdate(AdminEntity adminEntity,HttpServletRequest request,HttpServletResponse response) {	
 		// 1.服务器校验
-		if(!doNullValidation(${entityParName})){ 
+		if(!doNullValidation(adminEntity)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		//2.验证
 		
 		// 3.校验成功，进行业务处理
-		Integer doUpdate = ${lowercaseClassName}Service.doUpdate(${entityParName});
+		Integer doUpdate = adminService.doUpdate(adminEntity);
 		return this.responseData(true, doUpdate, MessageAttribute.COMMON_UPDATE_VAL_SUC);
 	}	
 
@@ -106,7 +106,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		// 2.校验成功，进行业务处理
-		Integer doDelete = ${lowercaseClassName}Service.doDelete(id);
+		Integer doDelete = adminService.doDelete(id);
 		return this.responseData(true, doDelete,  MessageAttribute.COMMON_DELETE_VAL_SUC);
 	}	
 	
@@ -132,7 +132,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 			return this.responseData(false, null,  MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		// 2.校验成功，进行业务处理
-		Integer doRemove = ${lowercaseClassName}Service.doRemove(id);
+		Integer doRemove = adminService.doRemove(id);
 		return this.responseData(true, doRemove, MessageAttribute.COMMON_REMOVE_VAL_SUC);	
 	}
 	
@@ -144,7 +144,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/doselect",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO doSelect(Integer id) {
+	public @ResponseBody MessageDTO doSelect(Integer id, HttpServletResponse response) {
 		return selectById(id);
 	}
 	
@@ -166,8 +166,8 @@ public class ${tableEntity.className}Controller extends BaseController {
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		// 2.校验成功，进行业务处理
-		${entityName} ${entityParName} = ${lowercaseClassName}Service.getById(id);
-		return this.responseData(true, ${entityParName},MessageAttribute.COMMON_SELECT_VAL_SUC);
+		AdminEntity adminEntity = adminService.getById(id);
+		return this.responseData(true, adminEntity,MessageAttribute.COMMON_SELECT_VAL_SUC);
 	}	
 	
 	
@@ -179,12 +179,12 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/pagequery",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO pageQuery(Criteria<${entityName}>  ${lowercaseClassName}Criteria){
+	public @ResponseBody MessageDTO pageQuery(Criteria<AdminEntity>  adminCriteria){
 		// 1.服务器校验
-		if(!doNullValidation(${lowercaseClassName}Criteria)){ 
+		if(!doNullValidation(adminCriteria)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
-		PageBean<${entityName}> pageQuery = ${lowercaseClassName}Service.pageQuery(${lowercaseClassName}Criteria);
+		PageBean<AdminEntity> pageQuery = adminService.pageQuery(adminCriteria);
 		return this.responseData(true, pageQuery,MessageAttribute.COMMON_SELECT_VAL_SUC);		
 
 	}	
@@ -197,23 +197,23 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/queryforlist",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO queryForList(Criteria<${entityName}>  ${lowercaseClassName}Criteria) {
+	public @ResponseBody MessageDTO queryForList(Criteria<AdminEntity>  adminCriteria) {
 		// 1.服务器校验
-		if(!doNullValidation(${lowercaseClassName}Criteria)){ 
+		if(!doNullValidation(adminCriteria)){ 
 			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
 		}
 		//查询条件
-		List<${entityName}> ${lowercaseClassName}EntityList = ${lowercaseClassName}Service.queryForList(${lowercaseClassName}Criteria);
-		return this.responseData(true, ${lowercaseClassName}EntityList,MessageAttribute.COMMON_SELECT_VAL_SUC);				
+		List<AdminEntity> adminEntityList = adminService.queryForList(adminCriteria);
+		return this.responseData(true, adminEntityList,MessageAttribute.COMMON_SELECT_VAL_SUC);				
 	}		
 
     
 	
 	
-	private boolean doUpdateValidation(${entityName} ${entityParName}) {
+	private boolean doUpdateValidation(AdminEntity adminEntity) {
 		boolean status = true;
 		// 1.空对象校验
-		if (${entityParName} == null) {
+		if (adminEntity == null) {
 			status = false;
 		}
 		return status;
@@ -228,10 +228,10 @@ public class ${tableEntity.className}Controller extends BaseController {
 	* @param response
 	* @return
 	*/
-	protected <T> boolean doAddValidation(${entityName} ${entityParName} ) {
+	protected <T> boolean doAddValidation(AdminEntity adminEntity ) {
 		boolean status = true;
 		// 1.空对象校验
-		if (${entityParName} == null) {
+		if (adminEntity == null) {
 			status = false;
 			
 		}

@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.bqsolo.main.utils.StringUtils;
+import com.bqsolo.main.utils.StringUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -78,7 +78,7 @@ public class JsonUtil {
     * @throws Exception  
     */ 
     public static <T> T convertJson2List(String jsonStr, Class<?> collectionClass, Class<?>... elementClasses) throws Exception {
-    	if(StringUtils.isEmpty(jsonStr)){
+    	if(StringUtil.isEmpty(jsonStr)){
     		return null;
     	}   	
            JavaType javaType = mapper.getTypeFactory().constructParametricType(collectionClass, elementClasses);
@@ -95,7 +95,7 @@ public class JsonUtil {
     * @throws IOException  
     */ 
     public static <T> T convertJson2Object(String jsonStr, Class<T> targetClazz) throws IOException {
-    	if(StringUtils.isEmpty(jsonStr)){
+    	if(StringUtil.isEmpty(jsonStr)){
     		return null;
     	}
         return mapper.readValue(jsonStr,targetClazz);
@@ -112,7 +112,7 @@ public class JsonUtil {
     * @throws IOException
     */
     public static <T, K> T convertJson2Object(String jsonStr, Class<T> targetClazz, Class<K> contentClazz) throws IOException {
-    	if(StringUtils.isEmpty(jsonStr)){
+    	if(StringUtil.isEmpty(jsonStr)){
     		return null;
     	}
     	JavaType javaType = mapper.getTypeFactory().constructParametricType(targetClazz, contentClazz);
@@ -131,7 +131,7 @@ public class JsonUtil {
     * @throws IOException  
     */ 
     public static <T> T convertJson2Object(String jsonStr,  TypeReference typeReference) throws IOException {
-    	if(StringUtils.isEmpty(jsonStr)){
+    	if(StringUtil.isEmpty(jsonStr)){
     		return null;
     	}
         return mapper.readValue(jsonStr,typeReference);

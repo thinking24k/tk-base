@@ -23,6 +23,8 @@ public class CommonAttribute {
 	public static final String BEFOREREGURL="beforeRegurl";
 	/**注册邮件模板*/
 	public static final String REGISTERFTL="registerl.ftl";
+	/** 当前Terminal Context信息 */
+	public static final String TERMINAL_CONTEXT ="TERMINAL_CONTEXT";
 	/**session验证码文字*/
 	public static String SESSIONRANDOMIMG="";
 	

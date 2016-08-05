@@ -14,7 +14,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.bqsolo.main.utils.StringUtils;
+import com.bqsolo.main.utils.StringUtil;
 
 
 
@@ -104,10 +104,10 @@ public class HttpDynamicUtil extends HttpUtil{
 		HttpURLConnection conn = null;
 		try {
 			String urlNameString = strURL;
-		    if(StringUtils.isNotEmpty(this.getSessionId())){
+		    if(StringUtil.isNotEmpty(this.getSessionId())){
 		    	urlNameString+=";jsessionid="+this.getSessionId();
 		    }
-		    if(StringUtils.isNotEmpty(params)){
+		    if(StringUtil.isNotEmpty(params)){
 		    	urlNameString += "?" + params;
 		    }
 			URL url = new URL(urlNameString);
@@ -190,10 +190,10 @@ public class HttpDynamicUtil extends HttpUtil{
 		HttpURLConnection conn = null; 
 		try {
 			String urlNameString = strURL;
-		    if(StringUtils.isNotEmpty(this.getSessionId())){
+		    if(StringUtil.isNotEmpty(this.getSessionId())){
 		    	urlNameString+=";jsessionid="+this.getSessionId();
 		    }
-		    if(StringUtils.isNotEmpty(getParams)){
+		    if(StringUtil.isNotEmpty(getParams)){
 		    	urlNameString += "?" + getParams;
 		    }
 			URL url = new URL(urlNameString);
@@ -254,9 +254,9 @@ public class HttpDynamicUtil extends HttpUtil{
 		if(conn!=null){
 	        String cookieValue=conn.getHeaderField("Set-Cookie");
 	        System.out.println("cookie value:"+cookieValue);
-	        if(StringUtils.isNotEmpty(cookieValue)){
+	        if(StringUtil.isNotEmpty(cookieValue)){
 	     	   sessionId=cookieValue.substring(0, cookieValue.indexOf(";")); 
-	     	   if(StringUtils.isNotEmpty(sessionId)&&sessionId.indexOf("=")>-1 ){
+	     	   if(StringUtil.isNotEmpty(sessionId)&&sessionId.indexOf("=")>-1 ){
 	     		  sessionId=sessionId.substring(sessionId.indexOf("=")+1); 
 	     	   }
 	        }			
