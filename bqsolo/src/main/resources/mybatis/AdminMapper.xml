@@ -75,7 +75,7 @@
 					<if test="null != e.changedate"  >
 						 changedate,
 					</if>
-			 ,isvoid
+			 isvoid
 		 ) values
 		 <foreach collection="list" item="item" index="index"  separator=",">
 				(
@@ -115,9 +115,9 @@
 						<if test="null != item.changedate"  >
 						 	#{item.changedate},
 						</if>
-			 
+			 			#{item.isvoid}
 			 )
-		,#{item.isvoid}
+		
 		</foreach>
   	</insert>
   	

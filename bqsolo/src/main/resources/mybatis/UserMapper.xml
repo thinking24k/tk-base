@@ -145,9 +145,9 @@
 						<if test="null != item.changedate"  >
 						 	#{item.changedate},
 						</if>
-			 
+			 			#{item.isvoid}
 			 )
-		#{item.isvoid}
+		
 		</foreach>
   	</insert>
   	

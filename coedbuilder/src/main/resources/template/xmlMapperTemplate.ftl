@@ -39,8 +39,10 @@
 						 	${r"#"}{item.${col.classAttr}},
 						</if>
 					</#if>
-			 </#list>)
-		${r"#"}{item.isvoid}
+			 </#list>
+			 ${r"#"}{item.isvoid}
+			 )
+		
 		</foreach>
   	</insert>
   	
