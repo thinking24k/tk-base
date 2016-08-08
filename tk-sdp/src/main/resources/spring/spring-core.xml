@@ -48,6 +48,22 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	
+	<!-- 使用缓存annotation 配置 
+    <cache:annotation-driven cache-manager="ehCacheManager" />
+     
+     Spring对EhCache的缓存工厂支持 
+    <bean id="ehCacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml" />
+        <property name="shared" value="false" />
+    </bean>
+     
+     Spring对EhCache的缓存管理 
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehCacheManagerFactory"></property>
+    </bean>
+     -->
+	
 	<aop:aspectj-autoproxy/>
 	
 	<aop:config>

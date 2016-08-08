@@ -1,7 +1,5 @@
 package com.xxwl.tk.main.service;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,7 +14,6 @@ import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.main.dao.mapper.UserMapper;
 import com.xxwl.tk.main.entity.UserEntity;
-import com.xxwl.tk.main.service.UserService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
