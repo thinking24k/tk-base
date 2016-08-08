@@ -295,7 +295,9 @@
 
 
 	<modules>
-		<module>bqsolo</module>
-		<module>coedbuilder</module>		
+		<module>tk-sdp</module>
+		<module>tk-builder</module>
+		<module>tk-portal</module>
+		<module>tk-admin</module>
 	</modules>
 </project>
