@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xxwl.tk.main.dao.mapper.UserMapper" >
+<mapper namespace="com.xxwl.tk.main.dao.mapper.GroupMapper">
 	<!-- 注意：1. BaseResultMap 与底层架构有关,除数据库变更.严禁人为修改. -->
-	<resultMap id="BaseResultMap"  type="com.xxwl.tk.main.entity.UserEntity">
+	<resultMap id="BaseResultMap"  type="com.xxwl.tk.main.entity.GroupEntity">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
-		<result column="password" property="password" jdbcType="VARCHAR" />
-		<result column="img" property="img" jdbcType="VARCHAR" />
-		<result column="priority" property="priority" jdbcType="DOUBLE" />
-		<result column="sex" property="sex" jdbcType="INTEGER" />
-		<result column="logintime" property="logintime" jdbcType="INTEGER" />
+		<result column="gruopname" property="gruopname" jdbcType="VARCHAR" />
+		<result column="shorthand" property="shorthand" jdbcType="VARCHAR" />
 		<result column="cuid" property="cuid" jdbcType="INTEGER" />
 		<result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
 		<result column="changeuid" property="changeuid" jdbcType="INTEGER" />
@@ -20,33 +14,21 @@
 	</resultMap>
 
 	<sql id="allColumn">
-		id,nickname,email,mobile,password,img,priority,sex,logintime,cuid,cdate,changeuid,changedate,isvoid
+		id,gruopname,shorthand,cuid,cdate,changeuid,changedate,isvoid
 	</sql>
 
-	<insert id="doAdd"  parameterType="com.xxwl.tk.main.entity.UserEntity" >
-    	 insert into user ( 
- <if test="null != nickname"  >nickname,</if>
-<if test="null != email"  >email,</if>
-<if test="null != mobile"  >mobile,</if>
-<if test="null != password"  >password,</if>
-<if test="null != img"  >img,</if>
-<if test="null != priority"  >priority,</if>
-<if test="null != sex"  >sex,</if>
-<if test="null != logintime"  >logintime,</if>
+	<insert id="doAdd"  parameterType="com.xxwl.tk.main.entity.GroupEntity" >
+    	 insert into group ( 
+ <if test="null != gruopname"  >gruopname,</if>
+<if test="null != shorthand"  >shorthand,</if>
 <if test="null != cuid"  >cuid,</if>
 <if test="null != cdate"  >cdate,</if>
 <if test="null != changeuid"  >changeuid,</if>
 <if test="null != changedate"  >changedate,</if>
  
  isvoid) values ( 
-<if test="null != nickname"  >#{nickname},</if>
-<if test="null != email"  >#{email},</if>
-<if test="null != mobile"  >#{mobile},</if>
-<if test="null != password"  >#{password},</if>
-<if test="null != img"  >#{img},</if>
-<if test="null != priority"  >#{priority},</if>
-<if test="null != sex"  >#{sex},</if>
-<if test="null != logintime"  >#{logintime},</if>
+<if test="null != gruopname"  >#{gruopname},</if>
+<if test="null != shorthand"  >#{shorthand},</if>
 <if test="null != cuid"  >#{cuid},</if>
 <if test="null != cdate"  >#{cdate},</if>
 <if test="null != changeuid"  >#{changeuid},</if>
@@ -56,30 +38,12 @@
   	</insert>
   	
 	<insert id="doAddBatch"  parameterType="java.util.List" >
-    	insert into user (
-					<if test="null != e.nickname"  >
-						 nickname,
+    	insert into group (
+					<if test="null != e.gruopname"  >
+						 gruopname,
 					</if>
-					<if test="null != e.email"  >
-						 email,
-					</if>
-					<if test="null != e.mobile"  >
-						 mobile,
-					</if>
-					<if test="null != e.password"  >
-						 password,
-					</if>
-					<if test="null != e.img"  >
-						 img,
-					</if>
-					<if test="null != e.priority"  >
-						 priority,
-					</if>
-					<if test="null != e.sex"  >
-						 sex,
-					</if>
-					<if test="null != e.logintime"  >
-						 logintime,
+					<if test="null != e.shorthand"  >
+						 shorthand,
 					</if>
 					<if test="null != e.cuid"  >
 						 cuid,
@@ -97,87 +61,46 @@
 		 ) values
 		 <foreach collection="list" item="item" index="index"  separator=",">
 				(
-			 
-						<if test="null != item.nickname"  >
-						 	#{item.nickname},
+
+						<if test="null != item.gruopname"  >
+						 	#{item.gruopname},
 						</if>
-			 
-						<if test="null != item.email"  >
-						 	#{item.email},
+
+						<if test="null != item.shorthand"  >
+						 	#{item.shorthand},
 						</if>
-			 
-						<if test="null != item.mobile"  >
-						 	#{item.mobile},
-						</if>
-			 
-						<if test="null != item.password"  >
-						 	#{item.password},
-						</if>
-			 
-						<if test="null != item.img"  >
-						 	#{item.img},
-						</if>
-			 
-						<if test="null != item.priority"  >
-						 	#{item.priority},
-						</if>
-			 
-						<if test="null != item.sex"  >
-						 	#{item.sex},
-						</if>
-			 
-						<if test="null != item.logintime"  >
-						 	#{item.logintime},
-						</if>
-			 
+
 						<if test="null != item.cuid"  >
 						 	#{item.cuid},
 						</if>
-			 
+
 						<if test="null != item.cdate"  >
 						 	#{item.cdate},
 						</if>
-			 
+
 						<if test="null != item.changeuid"  >
 						 	#{item.changeuid},
 						</if>
-			 
+
 						<if test="null != item.changedate"  >
 						 	#{item.changedate},
 						</if>
-			 			#{item.isvoid}
+
+			 #{item.isvoid}
 			 )
 		
 		</foreach>
   	</insert>
   	
-	<update id="doUpdate"   parameterType="com.xxwl.tk.main.entity.UserEntity" >
+	<update id="doUpdate"   parameterType="com.xxwl.tk.main.entity.GroupEntity" >
 	    update 
-	    	user
+	    	group
 	    <set>
-					<if test="null != nickname"  >
-						 nickname = #{nickname,jdbcType=VARCHAR},
+					<if test="null != gruopname"  >
+						 gruopname = #{gruopname,jdbcType=VARCHAR},
 					</if>
-					<if test="null != email"  >
-						 email = #{email,jdbcType=VARCHAR},
-					</if>
-					<if test="null != mobile"  >
-						 mobile = #{mobile,jdbcType=VARCHAR},
-					</if>
-					<if test="null != password"  >
-						 password = #{password,jdbcType=VARCHAR},
-					</if>
-					<if test="null != img"  >
-						 img = #{img,jdbcType=VARCHAR},
-					</if>
-					<if test="null != priority"  >
-						 priority = #{priority,jdbcType=DOUBLE},
-					</if>
-					<if test="null != sex"  >
-						 sex = #{sex,jdbcType=INTEGER},
-					</if>
-					<if test="null != logintime"  >
-						 logintime = #{logintime,jdbcType=INTEGER},
+					<if test="null != shorthand"  >
+						 shorthand = #{shorthand,jdbcType=VARCHAR},
 					</if>
 					<if test="null != cuid"  >
 						 cuid = #{cuid,jdbcType=INTEGER},
@@ -203,7 +126,7 @@
      	
   	<delete id="doDelete"  >
   		delete  from 
-  			user
+  			group
 	  	<where> 
 	  		id 
 	  	=
@@ -213,7 +136,7 @@
     
   	<delete id="doDeletes"  parameterType="java.util.List" >
   		delete  from 
-  			user
+  			group
 	  	<where> 
 	  		id 
 	  	in 
@@ -223,9 +146,9 @@
 		</where>
     </delete>
     
-    <update id="doRemove" parameterType="com.xxwl.tk.main.entity.UserEntity"  >
+    <update id="doRemove" parameterType="com.xxwl.tk.main.entity.GroupEntity"  >
     	update 
-    		user
+    		group
     	set isvoid = 0
 	    <if test="changeuid != null" >
 	      ,changeuid = #{changeuid}
@@ -247,7 +170,7 @@
 	    select
       		<include refid="allColumn" />
       	from 
-      		user
+      		group
 	    <where>
 		    id = #{id}
 		</where>
@@ -257,7 +180,7 @@
 	  	select
       		<include refid="allColumn" />
       	from 
-      		user
+      		group
 	  	<where> 
 	  		id 
 	  	in 
@@ -268,7 +191,7 @@
   	</select>
   
    <select id="getCount" resultType="java.lang.Long">
-      select count(*) from user
+      select count(*) from group
       <if test="_parameter != null">
           <include refid="sqlCriCondition"/>
       </if>
@@ -277,7 +200,7 @@
   <select id="queryForList" resultMap="BaseResultMap">
       select
       <include refid="allColumn" />
-      from user
+      from group
       <if test="_parameter != null">
         <include refid="sqlCriCondition"/>
         <include refid="sortSql"/>
@@ -288,7 +211,7 @@
   <select id="queryForPageList" resultMap="BaseResultMap">
       select
       <include refid="allColumn" />
-      from user
+      from group
       <if test="_parameter != null">
         <include refid="sqlCriCondition"/>
         <include refid="sortSql"/>
@@ -305,30 +228,12 @@
 		<if test="null != id">
 			AND id = #{id,jdbcType=INTEGER}
 		</if>	
-		<if test="null != nickname and nickname != ''">
-			AND nickname LIKE CONCAT('%', #{nickname,jdbcType=VARCHAR}, '%')
+		<if test="null != gruopname and gruopname != ''">
+			AND gruopname LIKE CONCAT('%', #{gruopname,jdbcType=VARCHAR}, '%')
 		</if>
-		<if test="null != email and email != ''">
-			AND email = #{email,jdbcType=VARCHAR}
+		<if test="null != shorthand and shorthand != ''">
+			AND shorthand LIKE CONCAT('%', #{shorthand,jdbcType=VARCHAR}, '%')
 		</if>
-		<if test="null != mobile and mobile != ''">
-			AND mobile =#{mobile,jdbcType=VARCHAR}
-		</if>
-		<if test="null != password and password != ''">
-			AND password =#{password,jdbcType=VARCHAR}
-		</if>
-		<if test="null != img and img != ''">
-			AND img LIKE CONCAT('%', #{img,jdbcType=VARCHAR}, '%')
-		</if>
-		<if test="null != priority">
-			AND priority = #{priority,jdbcType=DOUBLE}
-		</if>	
-		<if test="null != sex">
-			AND sex = #{sex,jdbcType=INTEGER}
-		</if>	
-		<if test="null != logintime">
-			AND logintime = #{logintime,jdbcType=INTEGER}
-		</if>	
 		<if test="null != cuid">
 			AND cuid = #{cuid,jdbcType=INTEGER}
 		</if>	
@@ -356,29 +261,11 @@
             <otherwise>
                 <foreach collection="sortItemMap.keySet()" item="field" separator=",">
                     <choose>
-						<when test="field == 'nickname'">
-			                 nickname ${sortItemMap.nickname}
+						<when test="field == 'gruopname'">
+			                 gruopname ${sortItemMap.gruopname}
 			            </when>
-						<when test="field == 'email'">
-			                 email ${sortItemMap.email}
-			            </when>
-						<when test="field == 'mobile'">
-			                 mobile ${sortItemMap.mobile}
-			            </when>
-						<when test="field == 'password'">
-			                 password ${sortItemMap.password}
-			            </when>
-						<when test="field == 'img'">
-			                 img ${sortItemMap.img}
-			            </when>
-						<when test="field == 'priority'">
-			                 priority ${sortItemMap.priority}
-			            </when>
-						<when test="field == 'sex'">
-			                 sex ${sortItemMap.sex}
-			            </when>
-						<when test="field == 'logintime'">
-			                 logintime ${sortItemMap.logintime}
+						<when test="field == 'shorthand'">
+			                 shorthand ${sortItemMap.shorthand}
 			            </when>
 						<when test="field == 'cuid'">
 			                 cuid ${sortItemMap.cuid}

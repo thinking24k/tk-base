@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.xxwl.tk.framework.attribute.CommonAttribute;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.main.dao.UserDao;
@@ -134,6 +135,28 @@ public class UserServiceImpl implements UserService {
 		List<UserEntity> list = userDao.queryForPageList(criteria);
 		criteria.getPageBean().setData(list);
 		return criteria.getPageBean();
+	}
+
+	@Override
+	public UserEntity doLogin(UserEntity user) {
+		if(null == user){
+			return null;
+		}
+		//默认使用邮箱登陆，如果传入的是手机号码则使用手机
+		if(!user.getEmail().contains(CommonAttribute.EMAIL_FLAG)){
+			user.setMobile(user.getEmail());
+			user.setEmail(null);
+		}
+		//查询
+		List<UserEntity> list = userDao.queryForList(new Criteria<UserEntity>(user));
+		if(null ==list || list.size()!=1){
+			return null;
+		}
+		UserEntity userEntity = list.get(0);
+		if(userEntity.getPassword().equals(user.getPassword())){
+			return userEntity;
+		}
+		return null;
 	}
 
 	

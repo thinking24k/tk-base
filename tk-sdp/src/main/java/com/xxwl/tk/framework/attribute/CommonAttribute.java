@@ -27,6 +27,11 @@ public class CommonAttribute {
 	public static final String TERMINAL_CONTEXT ="TERMINAL_CONTEXT";
 	/**session验证码文字*/
 	public static String SESSIONRANDOMIMG="";
+	/** 邮件标示符 */
+	public static final String EMAIL_FLAG ="@";
+	
+	
+	
 	
 	/**项目根目录本地路径 classes目录;例如:/E:/yw_work/yistylenow/yistyle/target/classes/;*/
 	public static String LOCALCLASSPATH="";

@@ -1,7 +1,5 @@
 package com.xxwl.tk.main.service;
 
-import com.xxwl.tk.framework.page.Criteria;
-import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.framework.service.BaseService;
 import com.xxwl.tk.main.entity.UserEntity;
 /** 
@@ -17,7 +15,15 @@ import com.xxwl.tk.main.entity.UserEntity;
 public interface UserService extends BaseService<UserEntity, Integer> {
 	
 
-	public  PageBean<UserEntity> pageQuery(Criteria<UserEntity> criteria);
+	
+	/**
+	 * 
+	 * @Title: doLogin 
+	 * @Description: 登陆
+	 * @param user
+	 * @return
+	 */
+	public 	UserEntity doLogin(UserEntity user);
 	
 	
 

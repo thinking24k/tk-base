@@ -55,7 +55,19 @@ public class Criteria<E> implements Serializable {
     
     
     
-    public PageBean<E> getPageBean() {
+    
+    
+    public Criteria() {
+		super();
+	}
+    
+
+	public Criteria(E param) {
+		this.param = param;
+	}
+
+
+	public PageBean<E> getPageBean() {
     	if(null == pageBean){
     		return new PageBean<E>();
     	}

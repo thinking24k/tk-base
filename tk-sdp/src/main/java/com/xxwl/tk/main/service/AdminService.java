@@ -1,7 +1,5 @@
 package com.xxwl.tk.main.service;
 
-import com.xxwl.tk.framework.page.Criteria;
-import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.framework.service.BaseService;
 import com.xxwl.tk.main.entity.AdminEntity;
 /** 
@@ -17,7 +15,6 @@ import com.xxwl.tk.main.entity.AdminEntity;
 public interface AdminService extends BaseService<AdminEntity, Integer> {
 	
 
-	public  PageBean<AdminEntity> pageQuery(Criteria<AdminEntity> criteria);
 	
 	
 

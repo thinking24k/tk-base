@@ -1,8 +1,6 @@
 package ${basePackage}.service;
 
 import com.xxwl.tk.framework.service.BaseService;
-import com.xxwl.tk.framework.page.PageBean;
-import com.xxwl.tk.framework.page.Criteria;
 import ${basePackage}.entity.${entityName};
 /** 
 * @ClassName: ${tableEntity.className}Service 
@@ -17,8 +15,6 @@ import ${basePackage}.entity.${entityName};
 public interface ${tableEntity.className}Service extends BaseService<${entityName}, Integer> {
 	
 
-	public  PageBean<${entityName}> pageQuery(Criteria<${entityName}> criteria);
-	
 	
 
 }
