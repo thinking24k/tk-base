@@ -5,10 +5,12 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
-<%
-	response.sendRedirect(basePath+"main/user.cmd/doselectbyid/1");
-	/* response.sendRedirect(basePath+"WEB-INF/pages/index/main.jsp"); */
-	//request.getRequestDispatcher("WEB-INF/pages/index/index.jsp").forward(request, response);
-%> 
-
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>tk-sdp</title>
+</head>
+<body>
+<h1>tk-sdp</h1>
+</body>
+</html>
