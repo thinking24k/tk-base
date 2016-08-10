@@ -1,10 +1,9 @@
 package com.xxwl.tk.main.web.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -13,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xxwl.tk.framework.attribute.CommonAttribute;
 import com.xxwl.tk.framework.attribute.MessageAttribute;
 import com.xxwl.tk.framework.domain.MessageDTO;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.framework.web.conttroller.BaseController;
 import com.xxwl.tk.main.entity.UserEntity;
+import com.xxwl.tk.main.entity.model.LoginModel;
 import com.xxwl.tk.main.service.UserService;
+import com.xxwl.tk.main.utils.StringUtil;
 
 /** 
 * @ClassName: UserController 
@@ -189,23 +191,7 @@ public class UserController extends BaseController {
 
 	}	
 	
-	/**
-	 * @Title: 查询集合操作
-	 * @Description: 不分页
-	 * @param Object id 主键.
-	 * @param response
-	 * @throws BusinessException
-	 */
-	@RequestMapping(value="/queryforlist",method = RequestMethod.POST)
-	public @ResponseBody MessageDTO queryForList(Criteria<UserEntity>  userCriteria) {
-		// 1.服务器校验
-		if(!doNullValidation(userCriteria)){ 
-			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
-		}
-		//查询条件
-		List<UserEntity> userEntityList = userService.queryForList(userCriteria);
-		return this.responseData(true, userEntityList,MessageAttribute.COMMON_SELECT_VAL_SUC);				
-	}		
+			
 
     
 	
@@ -236,6 +222,86 @@ public class UserController extends BaseController {
 			
 		}
 		return status;
+	}
+	/**
+	 * 
+	 * @Title: doLogin 
+	 * @Description: 登陆
+	 * @param loginModel
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/dologin",method = RequestMethod.POST)
+	public @ResponseBody MessageDTO doLogin(LoginModel  loginModel,HttpSession session) {
+		// 1.服务器校验
+		if(!doNullValidation(loginModel)){ 
+			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
+		}
+		//查询
+		UserEntity userEntity = queryUserByEorM(loginModel.getUsername());
+		if(null ==userEntity){
+			return this.responseData(false, null,"该用户不存在");
+		}
+		if(userEntity.getPassword().equals(loginModel.getPwd())){
+			userEntity.setPassword(null);
+			session.setAttribute(CommonAttribute.SESSIONUSER, userEntity);
+			return this.responseData(true, null,MessageAttribute.COMMON_SELECT_VAL_SUC);
+		}
+		return this.responseData(false, null,"密码错误");
+	}
+	
+	private UserEntity queryUserByEorM(String username){
+		if(StringUtil.isEmpty(username)){
+			return null;
+		}
+		UserEntity user=new UserEntity();
+		//默认使用邮箱登陆，如果传入的是手机号码则使用手机
+		if(!username.contains(CommonAttribute.EMAIL_FLAG)){
+			user.setMobile(username);
+		}else{
+			user.setEmail(username);
+		}
+		//查询
+		return  userService.queryUser(user);
+	}
+	/**
+	 * 
+	 * @Title: doLogin 
+	 * @Description: 登出
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/dologout",method = RequestMethod.POST)
+	public @ResponseBody MessageDTO doLogout(HttpSession session) {
+		session.removeAttribute(CommonAttribute.SESSIONUSER);
+		return this.responseData(true, null,MessageAttribute.COMMON_UPDATE_VAL_SUC);
+	}
+	/**
+	 * 
+	 * @Title: doRegister 
+	 * @Description: TODO
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/doreg",method = RequestMethod.POST)
+	public @ResponseBody MessageDTO doRegister(UserEntity userEntity,HttpSession session) {
+		// 1.服务器校验
+		if(!doNullValidation(userEntity)){ 
+			return this.responseData(false, null,MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
+		}
+		Integer add = userService.doAdd(userEntity);
+		if(add>0){
+			UserEntity user=null;
+			if(!StringUtil.isEmpty(userEntity.getEmail())){
+				user= queryUserByEorM(userEntity.getEmail());
+			}else{
+				user= queryUserByEorM(userEntity.getMobile());
+			}
+			userEntity.setPassword(null);
+			session.setAttribute(CommonAttribute.SESSIONUSER, user);
+			return this.responseData(true, null,MessageAttribute.COMMON_INSERT_VAL_SUC);
+		}
+		return this.responseData(false, null,MessageAttribute.COMMON_INSERT_VAL_FAIL);
 	}
 	
 }

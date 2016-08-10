@@ -13,5 +13,7 @@ import com.xxwl.tk.main.entity.UserEntity;
 */ 
 public interface UserDao  extends GenericDAO<UserEntity, Integer>{
 
+	UserEntity queryUser(UserEntity user);
+
 
 }

@@ -13,17 +13,18 @@ import com.xxwl.tk.main.entity.UserEntity;
 */ 
 
 public interface UserService extends BaseService<UserEntity, Integer> {
-	
-
-	
 	/**
 	 * 
-	 * @Title: doLogin 
-	 * @Description: 登陆
+	 * @Title: queryUser 
+	 * @Description: 查询用户信息
 	 * @param user
 	 * @return
 	 */
-	public 	UserEntity doLogin(UserEntity user);
+	UserEntity queryUser(UserEntity user);
+	
+
+	
+
 	
 	
 

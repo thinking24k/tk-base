@@ -8,6 +8,7 @@ import java.security.MessageDigest;
  *
  */
 public class SHAUtil {
+	
 	public static String strMove(String inStr){
 		if(inStr==null ||inStr.trim().length()<4){
 			return inStr;
@@ -27,6 +28,7 @@ public class SHAUtil {
 		sb.append(sbtemp);
 		return sb.toString();
 	}
+	
 	public static String strAdd(String inStr){
 		if(inStr==null ||inStr.trim().length()<4){
 			return inStr;

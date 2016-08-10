@@ -28,4 +28,9 @@ public class UserDaoImpl  extends GenericDAOImpl<UserEntity, Integer> implements
 		return userMapper;
 	}
 
+	@Override
+	public UserEntity queryUser(UserEntity user) {
+		return userMapper.queryUser(user);
+	}
+
 }

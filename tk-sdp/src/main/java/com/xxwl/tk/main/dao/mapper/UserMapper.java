@@ -13,5 +13,7 @@ import com.xxwl.tk.main.entity.UserEntity;
 */ 
 public interface UserMapper  extends BaseMapper<UserEntity, Integer>{
 
+	UserEntity queryUser(UserEntity user);
+
 
 }

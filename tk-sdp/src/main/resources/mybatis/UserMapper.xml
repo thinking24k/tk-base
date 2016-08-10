@@ -296,6 +296,13 @@
       </if>
   </select>
   
+  <select id="queryUser" parameterType="com.xxwl.tk.main.entity.UserEntity" resultMap="BaseResultMap">
+      select
+      <include refid="allColumn" />
+      from user
+      <include refid="sqlCriCondition"/>
+  </select>
+  
  
 
   <!--条件查询时 日期默认= 字符默认like 其他默认= 需要进行其他逻辑处理请自行更改-->

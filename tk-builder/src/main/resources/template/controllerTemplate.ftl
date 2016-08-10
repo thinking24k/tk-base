@@ -43,9 +43,6 @@ public class ${tableEntity.className}Controller extends BaseController {
 	* @Title: doAdd 
 	* @Description: 新增操作
 	* @param ${entityParName}  Post提交
-	* @param request
-	* @param response
-	* @throws BusinessException  
 	*/ 
 	@RequestMapping(value="/doadd",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO doAdd(${entityName} ${entityParName},HttpServletRequest request,HttpServletResponse response) {
@@ -63,10 +60,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 	/**
 	 * @Title: 更新操作
 	 * @Description: 更新${tableEntity.className}Entity 表单对象
-	 * @param ${entityParName}
-	 *            表单DTO对象
-	 * @param response
-	 * @throws BusinessException
+	 * @param ${entityParName}表单DTO对象
 	 */
 	@RequestMapping(value="/doupdate",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO doUpdate(${entityName} ${entityParName},HttpServletRequest request,HttpServletResponse response) {	
@@ -90,9 +84,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * <p> 1.针对其他APP. 如无特殊情况，尽量用此唯一入口接受本操作.
 	 * <p> 2.底层支持 批量删除和 单个删除. 即支持Long/String id. 或者List id.
 	 * 不需要更改本方法任何代码. 底层自动识别.
-	 * @param Object id 主键.
-	 * @param response
-	 * @throws BusinessException
+	 * @param Integer id 主键.
 	 */
 	@RequestMapping(value="/dodel",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO doDelete(Integer id) {
@@ -117,9 +109,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * <p>逻辑删除一般应用与 订单/电子钱包等删除后 对数据展示有影响的 模块主表
 	 * <p>2.底层支持 批量移除和 单个移除. 即支持Long/String id. 或者List id.
 	 * 需要更改本方法任何代码. 底层自动识别.
-	 * @param Object id 主键.
-	 * @param response
-	 * @throws BusinessException
+	 * @param Integer id 主键.
 	 */
 	@RequestMapping(value="/doremove",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO doRemove(Integer id) {
@@ -139,9 +129,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 	/**
 	 * @Title: 查找对象操作
 	 * @Description: 
-	 * @param Object id 主键.
-	 * @param response
-	 * @throws BusinessException
+	 * @param Integer id 主键.
 	 */
 	@RequestMapping(value="/doselect",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO doSelect(Integer id) {
@@ -151,9 +139,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 	/**
 	 * @Title: 查找对象操作[Rest方式]
 	 * @Description: 
-	 * @param Object id 主键.
-	 * @param response
-	 * @throws BusinessException
+	 * @param Integer id 主键.
 	 */
 	@RequestMapping("/doselectbyid/{id}")
 	public @ResponseBody MessageDTO doSelectById(@PathVariable("id") Integer id) {
@@ -174,9 +160,7 @@ public class ${tableEntity.className}Controller extends BaseController {
 	/**
 	 * @Title: 分页操作
 	 * @Description: 分页，只返回集合
-	 * @param Object id 主键.
-	 * @param response
-	 * @throws BusinessException
+	 * @param Integer id 主键.
 	 */
 	@RequestMapping(value="/pagequery",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO pageQuery(Criteria<${entityName}>  ${lowercaseClassName}Criteria){
@@ -193,8 +177,6 @@ public class ${tableEntity.className}Controller extends BaseController {
 	 * @Title: 查询集合操作
 	 * @Description: 不分页
 	 * @param Object id 主键.
-	 * @param response
-	 * @throws BusinessException
 	 */
 	@RequestMapping(value="/queryforlist",method = RequestMethod.POST)
 	public @ResponseBody MessageDTO queryForList(Criteria<${entityName}>  ${lowercaseClassName}Criteria) {
@@ -225,7 +207,6 @@ public class ${tableEntity.className}Controller extends BaseController {
 	* <p>Description: 新增操作预校验</p>
 	* @param <T>
 	* @param T DTO对象
-	* @param response
 	* @return
 	*/
 	protected <T> boolean doAddValidation(${entityName} ${entityParName} ) {

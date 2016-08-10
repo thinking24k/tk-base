@@ -7,12 +7,13 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.xxwl.tk.framework.attribute.CommonAttribute;
+import com.xxwl.tk.assembly.md5andsha.MD5Util;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.main.dao.UserDao;
 import com.xxwl.tk.main.entity.UserEntity;
 import com.xxwl.tk.main.service.UserService;
+import com.xxwl.tk.main.utils.StringUtil;
 /** 
 * @ClassName: UserService 
 * @Description: 本类是由代码生成器自动生成UserEntity逻辑层(Service)
@@ -75,6 +76,10 @@ public class UserServiceImpl implements UserService {
 		if(null == user){
 			return null;
 		}
+		//密码加密
+		if(!StringUtil.isEmpty(user.getPassword())){
+			user.setPassword(MD5Util.md5Encode(user.getPassword()));
+		}
 		return userDao.doAdd(user);
 	}
 
@@ -90,6 +95,10 @@ public class UserServiceImpl implements UserService {
 	public Integer doUpdate(UserEntity user) {
 		if(null == user){
 			return null;
+		}
+		//密码加密
+		if(!StringUtil.isEmpty(user.getPassword())){
+			user.setPassword(MD5Util.md5Encode(user.getPassword()));
 		}
 		return userDao.doUpdate(user);
 	}
@@ -138,26 +147,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity doLogin(UserEntity user) {
+	public UserEntity queryUser(UserEntity user) {
 		if(null == user){
 			return null;
 		}
-		//默认使用邮箱登陆，如果传入的是手机号码则使用手机
-		if(!user.getEmail().contains(CommonAttribute.EMAIL_FLAG)){
-			user.setMobile(user.getEmail());
-			user.setEmail(null);
-		}
-		//查询
-		List<UserEntity> list = userDao.queryForList(new Criteria<UserEntity>(user));
-		if(null ==list || list.size()!=1){
-			return null;
-		}
-		UserEntity userEntity = list.get(0);
-		if(userEntity.getPassword().equals(user.getPassword())){
-			return userEntity;
-		}
-		return null;
+		return userDao.queryUser(user);
 	}
+
 
 	
 	
