@@ -1,4 +1,4 @@
-package com.xxwl.tk.main.utils.http;
+package com.xxwl.tk.framework.utils.http;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.xxwl.tk.main.utils.StringUtil;
+import com.xxwl.tk.framework.utils.StringUtil;
 /**
  * @ClassName: JsonUtil
  * @Description: TODO

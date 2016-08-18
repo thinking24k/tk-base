@@ -1,5 +1,5 @@
 
-package com.xxwl.tk.main.utils.http;
+package com.xxwl.tk.framework.utils.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,7 +26,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
-import com.xxwl.tk.main.utils.StringUtil;
+import com.xxwl.tk.framework.utils.StringUtil;
 
 
 /** 

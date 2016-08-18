@@ -1,4 +1,4 @@
-package com.xxwl.tk.main.utils;
+package com.xxwl.tk.framework.utils;
 
 import java.util.Collection;
 import java.util.Map;

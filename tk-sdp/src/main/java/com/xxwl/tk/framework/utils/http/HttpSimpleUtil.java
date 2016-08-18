@@ -1,4 +1,4 @@
-package com.xxwl.tk.main.utils.http;
+package com.xxwl.tk.framework.utils.http;
 
 
 
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.xxwl.tk.main.utils.StringUtil;
+import com.xxwl.tk.framework.utils.StringUtil;
 
 
 /**

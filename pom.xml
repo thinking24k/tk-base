@@ -299,5 +299,6 @@
 		<module>tk-builder</module>
 		<module>tk-portal</module>
 		<module>tk-admin</module>
+		<module>tk-attachment</module>
 	</modules>
 </project>

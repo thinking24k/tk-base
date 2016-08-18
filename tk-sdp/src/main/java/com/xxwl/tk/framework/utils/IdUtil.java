@@ -1,4 +1,4 @@
-package com.xxwl.tk.main.utils;
+package com.xxwl.tk.framework.utils;
 /**
  * id生成工具类
  * @author deng

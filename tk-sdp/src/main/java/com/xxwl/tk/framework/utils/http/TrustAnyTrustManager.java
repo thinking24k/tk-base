@@ -7,7 +7,7 @@
 * @date 2014年12月30日
 * @version 1.0
 */
-package com.xxwl.tk.main.utils.http;
+package com.xxwl.tk.framework.utils.http;
 /**
  * 这个是一个证书管理器和下面的MyX509TrustManager类是一样的
  * @author credream

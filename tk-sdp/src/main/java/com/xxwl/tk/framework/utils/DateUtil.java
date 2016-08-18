@@ -1,4 +1,4 @@
-package com.xxwl.tk.main.utils;
+package com.xxwl.tk.framework.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

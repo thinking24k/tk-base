@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xxwl.tk.framework.attribute.CommonAttribute;
-import com.xxwl.tk.main.utils.MailUtil;
+import com.xxwl.tk.framework.utils.MailUtil;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

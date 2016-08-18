@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import com.xxwl.tk.assembly.md5andsha.MD5Util;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
+import com.xxwl.tk.framework.utils.StringUtil;
 import com.xxwl.tk.main.dao.UserDao;
 import com.xxwl.tk.main.entity.UserEntity;
 import com.xxwl.tk.main.service.UserService;
-import com.xxwl.tk.main.utils.StringUtil;
 /** 
 * @ClassName: UserService 
 * @Description: 本类是由代码生成器自动生成UserEntity逻辑层(Service)

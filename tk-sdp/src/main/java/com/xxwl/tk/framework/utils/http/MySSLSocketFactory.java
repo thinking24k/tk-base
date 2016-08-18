@@ -7,7 +7,7 @@
 * @date 2014年12月30日
 * @version 1.0
 */
-package com.xxwl.tk.main.utils.http;
+package com.xxwl.tk.framework.utils.http;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 

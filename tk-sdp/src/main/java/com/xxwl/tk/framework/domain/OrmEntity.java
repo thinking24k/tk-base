@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.xxwl.tk.framework.utils.EntityReflectUtil;
-import com.xxwl.tk.main.utils.http.JsonUtil;
+import com.xxwl.tk.framework.utils.http.JsonUtil;
 
 
 

@@ -17,11 +17,11 @@ import com.xxwl.tk.framework.attribute.MessageAttribute;
 import com.xxwl.tk.framework.domain.MessageDTO;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
+import com.xxwl.tk.framework.utils.StringUtil;
 import com.xxwl.tk.framework.web.conttroller.BaseController;
 import com.xxwl.tk.main.entity.UserEntity;
 import com.xxwl.tk.main.entity.model.LoginModel;
 import com.xxwl.tk.main.service.UserService;
-import com.xxwl.tk.main.utils.StringUtil;
 
 /** 
 * @ClassName: UserController 

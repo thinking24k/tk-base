@@ -1,4 +1,4 @@
-package com.xxwl.tk.main.utils.http;
+package com.xxwl.tk.framework.utils.http;
 
 import java.util.HashMap;
 

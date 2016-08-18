@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xxwl.tk.framework.attribute.CommonAttribute;
 import com.xxwl.tk.framework.attribute.TerminalAttribute;
 import com.xxwl.tk.framework.domain.context.TerminalContext;
+import com.xxwl.tk.framework.utils.StringUtil;
 import com.xxwl.tk.framework.web.security.LocalSession;
-import com.xxwl.tk.main.utils.StringUtil;
 
 public class SDPIntercepter implements HandlerInterceptor {
 
