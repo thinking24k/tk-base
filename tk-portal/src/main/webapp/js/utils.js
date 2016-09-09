@@ -1,19 +1,29 @@
-function utils(){
-	/*网络请求基本配置*/
-	//var server_addr = 'http://192.168.0.121:9030',
-	// server_addr_https = 'https://192.168.0.121:8443';
+/**
+ * 工具模块
+ * @param root
+ * @param factory
+ */
+(function(root,factory){
 
-	var server_addr = 'http://192.168.1.199:8080',
-	  server_addr_https = 'https://192.168.1.199:8443';
+	if (typeof define === "function" && define.amd) {
+        define(["jquery", 'require','layer'], function($,require,layer) {
+            return factory($, require,layer);
+        });
+    }
+	
+})(this,function($, require,layer, undefined){
+	/*网络请求基本配置*/
+	var server_addr = 'http://localhost:8090',
+	  server_addr_https = 'https://localhost:8443';
 	   
 	var config = {
 		server_addr : server_addr,
 		server_addr_https : server_addr_https,
-		sdp_url : server_addr + '/mi-pl-sdp/',
-		sdp_https_url : server_addr_https + '/mi-pl-sdp/',
-		current_url : server_addr + '/mi-portal/',
-		current_url_https : server_addr_https + '/mi-portal/',
-		attachment_url : server_addr + '/mi-attachment',
+		sdp_url : server_addr + '/tk-sdp/',
+		sdp_https_url : server_addr_https + '/tk-sdp/',
+		current_url : server_addr + '/tk-portal/',
+		current_url_https : server_addr_https + '/tk-portal/',
+		attachment_url : server_addr + '/tk-attachment',
 	};
 
 	//toast优化处理//session有效期(毫秒)
@@ -541,7 +551,7 @@ function utils(){
 	window.util = util;
 	
 	return util;
-};
+});
 /**
 *
 获取仓储的值
