@@ -13,9 +13,10 @@ addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); func
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
-<!--webfont-->
+<!--webfont
 <link href='http://fonts.useso.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+-->
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script src="js/menu_jquery.js"></script>
 
@@ -226,7 +227,18 @@ addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); func
 <script src="js/base.js"></script>
 <script>
     require(['jquery', 'utils'], function ($, utils) {
-    	
+    	 utils.ajax({
+             url: 'main/user/pagequery.tk',
+             data: {},
+             success: function (data) {
+                 if (1 == data.status) {
+                    
+                 } else {
+                     //服务器响应失败
+                     
+                 }
+             }
+         });
     	
     });
 </script>

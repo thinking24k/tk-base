@@ -11,13 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.xxwl.tk.attachment.service.AttachmentService;
+import com.xxwl.tk.attachment.utils.AttachmentUtil;
 import com.xxwl.tk.framework.attribute.MessageAttribute;
-import com.xxwl.tk.framework.web.conttroller.BaseController;
 import com.xxwl.tk.framework.domain.MessageDTO;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
+import com.xxwl.tk.framework.utils.StringUtil;
+import com.xxwl.tk.framework.web.conttroller.BaseController;
 import com.xxwl.tk.main.entity.PicEntity;
 import com.xxwl.tk.main.service.PicService;
 
@@ -38,7 +43,32 @@ public class PicController extends BaseController {
 
 	@Resource
 	private PicService picService;
+	@Resource
+	private AttachmentService attachmentService;
 
+	@RequestMapping(value="/doupload",method = RequestMethod.POST)
+	public @ResponseBody MessageDTO doAdd(PicEntity picEntity,@RequestParam("file") MultipartFile file,HttpServletRequest request,HttpServletResponse response) {
+		// 1.服务器校验
+		if(!doNullValidation(picEntity)){ 
+			return this.responseData(false, "图片基本信息为空",MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
+		}
+		//有文件需要上传
+		if(null == file){ 
+			return this.responseData(false, "文件为空",MessageAttribute.COMMON_ERROR_VAL_EMPTY_OBJ);
+		}
+		//获取文件完整保存路径
+		String beginSavePath = AttachmentUtil.getBeginSavePathByCache(request);
+		//保存文件
+		String savePath= attachmentService.saveFile(beginSavePath, "pic", file);
+		if(StringUtil.isEmpty(savePath)){
+			return this.responseData(false, "图片保存失败请联系管理员",MessageAttribute.COMMON_INSERT_VAL_FAIL);
+		}
+		picEntity.setPath(savePath);
+		//2.业务层调用
+		Integer doAdd = picService.doAdd(picEntity);
+		//3.返回JSON数据
+		return this.responseData(true, doAdd,  MessageAttribute.COMMON_SELECT_VAL_SUC);
+	}
 	/** 
 	* @Title: doAdd 
 	* @Description: 新增操作

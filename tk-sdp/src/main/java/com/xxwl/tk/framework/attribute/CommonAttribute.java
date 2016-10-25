@@ -29,7 +29,22 @@ public class CommonAttribute {
 	public static String SESSIONRANDOMIMG="";
 	/** 邮件标示符 */
 	public static final String EMAIL_FLAG ="@";
-	
+	/** 附件保存位置 */
+	public static final String ATTACHMENT_SAVEADDRESS = "attachment.saveAddress";
+	/** 根文件夹 */
+	public static final String ATTACHMENT_BASEFLODER = "attachment.baseFloder";
+	/** web访问的地址 */
+	public static final String ATTACHMENT_WEBADDRESS = "attachment.webAddress";
+	/** 富文本保存路径 */
+	public static final String ATTACHMENT_UEDITOR = "attachment.UEditor";
+	/**分享附件保存路径**/
+	public static final String ATTACHMENT_SHARE = "attachment.share";
+	/** 固定的默认路径分割符 */
+	public static final String PATH_DEFAULT_SPLIT_CHAR = "/";
+	/** 参数分割字符 */
+	public static final String STR_SPLIT_CHAR = ",";
+	/** 获取文件开始路经默认方式 */
+	public static final String ATTACHMENT_DEFAULT_VAL = "auto";
 	
 	
 	
