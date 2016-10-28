@@ -6,7 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ import ${basePackage}.service.${tableEntity.className}Service;
 @RequestMapping("<#if platform?? && platform!=''>/${platform}</#if><#if moduleName?? && moduleName!=''>/${moduleName}</#if>/${simpleEntityName}")
 public class ${tableEntity.className}Controller extends BaseController {
 	//日志
-	private static Logger logger = Logger.getLogger(${tableEntity.className}Controller.class);
+	private static Logger logger = LoggerFactory.getLogger(${tableEntity.className}Controller.class);
 
 	@Resource
 	private ${tableEntity.className}Service ${lowercaseClassName}Service;

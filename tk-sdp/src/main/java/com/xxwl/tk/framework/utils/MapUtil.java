@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class MapUtil {
 	
-	public static Map<String, Object> getValue(Object thisObj){  
+	public static Map<String, Object> objToMap(Object thisObj){  
 	    Map<String, Object> map = new HashMap<String, Object> ();
 	    if(null == thisObj){
 	    	return map;

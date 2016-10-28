@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-
 import com.xxwl.tk.framework.attribute.CommonAttribute;
 import com.xxwl.tk.framework.attribute.DaoAttribute;
 import com.xxwl.tk.framework.dao.GenericDAO;
@@ -39,7 +38,7 @@ public class GenericDAOImpl<E extends BaseEntity , PK> implements GenericDAO<E, 
 	}
 	//把分页条件转换为map参数
 	private Map<String, Object> doMapperMap(Criteria<E> criteria) {
-		Map<String, Object> temp=MapUtil.getValue(criteria.getParam());
+		Map<String, Object> temp=MapUtil.objToMap(criteria.getParam());
 		temp.put(DaoAttribute.QUERYFORLIST_SORTMAPNAME, criteria.getSortItemMap());
 		if(null !=criteria.getExtFields()){
 			temp.putAll(criteria.getExtFields());

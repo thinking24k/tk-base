@@ -109,14 +109,6 @@ public class PicEntity extends BaseEntity implements Serializable {
 	public void setLable(String lable) {
 		this.lable = lable;
 	}
-	/**文件md5*/
-	public String getMD5() {
-		return mD5;
-	}
-	/**文件md5*/
-	public void setMD5(String mD5) {
-		this.mD5 = mD5;
-	}
 	/**点击*/
 	public Integer getClick() {
 		return click;
@@ -132,6 +124,20 @@ public class PicEntity extends BaseEntity implements Serializable {
 	/**组*/
 	public void setGruopid(Integer gruopid) {
 		this.gruopid = gruopid;
+	}
+	
+	public String getMD5() {
+		return mD5;
+	}
+	public void setMD5(String mD5) {
+		this.mD5 = mD5;
+	}
+	@Override
+	public String toString() {
+		return "PicEntity [id=" + id + ", logicname=" + logicname + ", title="
+				+ title + ", path=" + path + ", priority=" + priority
+				+ ", lable=" + lable + ", mD5=" + mD5 + ", click=" + click
+				+ ", gruopid=" + gruopid + "]";
 	}
 
 }

@@ -2,7 +2,8 @@ package ${basePackage}.service.impl;
 
 import java.util.List;
 import javax.annotation.Resource;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
@@ -21,7 +22,7 @@ import com.xxwl.tk.main.service.${tableEntity.className}Service;
 @Service
 public class ${tableEntity.className}ServiceImpl implements ${tableEntity.className}Service {
 	
-	private static Logger logger = Logger.getLogger(${tableEntity.className}ServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(${tableEntity.className}ServiceImpl.class);
 	
 	@Resource
 	private ${tableEntity.className}Dao ${lowercaseClassName}Dao;

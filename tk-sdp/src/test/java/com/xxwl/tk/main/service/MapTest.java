@@ -2,6 +2,7 @@ package com.xxwl.tk.main.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import com.xxwl.tk.main.entity.UserEntity;
 public class MapTest {
 	@Test
 	public final void testDoMap() {
-		 Map<String, Object> temp = MapUtil.getValue(new UserEntity(null, "AA1", null, "123456", "123456", null, 6D, 0, null) );
+		 Map<String, Object> temp = MapUtil.objToMap(new UserEntity(null, "AA1", null, "123456", "123456", null, 6D, 0, null) );
 		for (String s : temp.keySet()) {
 			System.out.println(temp.get(s));
 		}
@@ -45,4 +46,11 @@ public class MapTest {
 		System.out.println(savePath+fileName);
 		
 	}
+	
+	@Test
+	public void t2(){
+		
+	}
+	
+	
 }

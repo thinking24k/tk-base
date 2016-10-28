@@ -5,7 +5,8 @@ import java.net.URISyntaxException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xxwl.tk.common.properties.PropertiesManager;
@@ -25,7 +26,7 @@ import com.xxwl.tk.main.web.controller.PicController;
  */
 public class AttachmentUtil {
 	//日志
-	private static Logger logger = Logger.getLogger(AttachmentUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(AttachmentUtil.class);
 	/**文件保存位置*/
 	private static String saveAddress="";
 	/**文件web访问地址*/
@@ -162,7 +163,7 @@ public class AttachmentUtil {
 			try {
 				path = PicController.class.getClassLoader().getResource("").toURI().getPath();
 			} catch (URISyntaxException e) {
-				logger.error(e);
+				logger.error(e.getMessage());
 				e.printStackTrace();
 			}
 			//如果request 为空 且是web容器中运行的项目则通过web-info进行获取容器目录
