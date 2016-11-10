@@ -17,7 +17,7 @@ public class MapUtil {
 	      Method[] m = c.getMethods();  
 	      for (int i = 0; i < m.length; i++) {  
 	        String method = m[i].getName();  
-	        if (method.startsWith("get")) {  
+	        if (method.startsWith("get") && !"getClass".equals(method)) {  
 	          try{  
 	        	  Object value = m[i].invoke(thisObj);  
 		          if (value != null) {  

@@ -37,8 +37,8 @@ public class GroupEntity extends BaseEntity implements Serializable {
 	@Column(name = "id", nullable = false)	
 	private Integer id;
 	//组名
-	@Column(name = "gruopname")
-	private String gruopname;
+	@Column(name = "groupname")
+	private String groupname;
 	//简写
 	@Column(name = "shorthand")
 	private String shorthand;
@@ -52,12 +52,12 @@ public class GroupEntity extends BaseEntity implements Serializable {
 		this.id = id;
 	}
 	/**组名*/
-	public String getGruopname() {
-		return gruopname;
+	public String getGroupname() {
+		return groupname;
 	}
 	/**组名*/
-	public void setGruopname(String gruopname) {
-		this.gruopname = gruopname;
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
 	}
 	/**简写*/
 	public String getShorthand() {

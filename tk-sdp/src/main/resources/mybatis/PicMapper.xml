@@ -11,7 +11,7 @@
 		<result column="lable" property="lable" jdbcType="VARCHAR" />
 		<result column="MD5" property="mD5" jdbcType="VARCHAR" />
 		<result column="click" property="click" jdbcType="INTEGER" />
-		<result column="gruopid" property="gruopid" jdbcType="INTEGER" />
+		<result column="groupid" property="groupid" jdbcType="INTEGER" />
 		<result column="cuid" property="cuid" jdbcType="INTEGER" />
 		<result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
 		<result column="changeuid" property="changeuid" jdbcType="INTEGER" />
@@ -20,7 +20,7 @@
 	</resultMap>
 
 	<sql id="allColumn">
-		id,logicname,title,path,priority,lable,MD5,click,gruopid,cuid,cdate,changeuid,changedate,isvoid
+		id,logicname,title,path,priority,lable,MD5,click,groupid,cuid,cdate,changeuid,changedate,isvoid
 	</sql>
 
 	<insert id="doAdd"  parameterType="com.xxwl.tk.main.entity.PicEntity" >
@@ -32,7 +32,7 @@
 <if test="null != lable"  >lable,</if>
 <if test="null != MD5"  >MD5,</if>
 <if test="null != click"  >click,</if>
-<if test="null != gruopid"  >gruopid,</if>
+<if test="null != groupid"  >groupid,</if>
 <if test="null != cuid"  >cuid,</if>
 <if test="null != cdate"  >cdate,</if>
 <if test="null != changeuid"  >changeuid,</if>
@@ -46,7 +46,7 @@
 <if test="null != lable"  >#{lable},</if>
 <if test="null != mD5"  >#{mD5},</if>
 <if test="null != click"  >#{click},</if>
-<if test="null != gruopid"  >#{gruopid},</if>
+<if test="null != groupid"  >#{groupid},</if>
 <if test="null != cuid"  >#{cuid},</if>
 <if test="null != cdate"  >#{cdate},</if>
 <if test="null != changeuid"  >#{changeuid},</if>
@@ -78,8 +78,8 @@
 					<if test="null != e.click"  >
 						 click,
 					</if>
-					<if test="null != e.gruopid"  >
-						 gruopid,
+					<if test="null != e.groupid"  >
+						 groupid,
 					</if>
 					<if test="null != e.cuid"  >
 						 cuid,
@@ -126,8 +126,8 @@
 						 	#{item.click},
 						</if>
 
-						<if test="null != item.gruopid"  >
-						 	#{item.gruopid},
+						<if test="null != item.groupid"  >
+						 	#{item.groupid},
 						</if>
 
 						<if test="null != item.cuid"  >
@@ -177,8 +177,8 @@
 					<if test="null != click"  >
 						 click = #{click,jdbcType=INTEGER},
 					</if>
-					<if test="null != gruopid"  >
-						 gruopid = #{gruopid,jdbcType=INTEGER},
+					<if test="null != groupid"  >
+						 groupid = #{groupid,jdbcType=INTEGER},
 					</if>
 					<if test="null != cuid"  >
 						 cuid = #{cuid,jdbcType=INTEGER},
@@ -327,8 +327,8 @@
 		<if test="null != click">
 			AND click = #{click,jdbcType=INTEGER}
 		</if>	
-		<if test="null != gruopid">
-			AND gruopid = #{gruopid,jdbcType=INTEGER}
+		<if test="null != groupid">
+			AND groupid = #{groupid,jdbcType=INTEGER}
 		</if>	
 		<if test="null != cuid">
 			AND cuid = #{cuid,jdbcType=INTEGER}
@@ -378,8 +378,8 @@
 						<when test="field == 'click'">
 			                 click ${sortItemMap.click}
 			            </when>
-						<when test="field == 'gruopid'">
-			                 gruopid ${sortItemMap.gruopid}
+						<when test="field == 'groupid'">
+			                 groupid ${sortItemMap.groupid}
 			            </when>
 						<when test="field == 'cuid'">
 			                 cuid ${sortItemMap.cuid}

@@ -1,13 +1,22 @@
 package com.xxwl.tk.main.service.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.main.dao.PicDao;
+import com.xxwl.tk.main.entity.GroupEntity;
 import com.xxwl.tk.main.entity.PicEntity;
+import com.xxwl.tk.main.entity.model.MainPageModel;
+import com.xxwl.tk.main.service.GroupService;
 import com.xxwl.tk.main.service.PicService;
 /** 
 * @ClassName: PicService 
@@ -25,6 +34,8 @@ public class PicServiceImpl implements PicService {
 	
 	@Resource
 	private PicDao picDao;
+	@Resource
+	private GroupService groupService;
 
 	@Override
 	public long getCount(Criteria<PicEntity> criteria) {
@@ -131,6 +142,30 @@ public class PicServiceImpl implements PicService {
 		List<PicEntity> list = picDao.queryForPageList(criteria);
 		criteria.getPageBean().setData(list);
 		return criteria.getPageBean();
+	}
+
+	@Override
+	public List<MainPageModel> queryMainPageData(User u) {
+		//用户信息为空或没有登陆随机查询
+		List<Integer> list = Arrays.asList(1,2,3,4);
+		List<GroupEntity> groups = groupService.getByIds(list);
+		if(null == groups|| groups.isEmpty()){
+			return null;
+		}
+		//临时存放
+		List<MainPageModel> templist=new ArrayList<MainPageModel>();
+		//查询条件
+		PicEntity e=new PicEntity();
+		Criteria<PicEntity> criteria =new Criteria<PicEntity>();
+		//遍历
+		for (GroupEntity g : groups) {
+			e.setGroupid(g.getId());
+			criteria.setParam(e);
+			criteria.setPageBean(new PageBean<PicEntity>(1, 5));
+			List<PicEntity> queryForList = picDao.queryForPageList(criteria);
+			templist.add(new MainPageModel(g.getId(), g.getGroupname(), g.getShorthand(), queryForList));
+		}
+		return templist;
 	}
 	
 }

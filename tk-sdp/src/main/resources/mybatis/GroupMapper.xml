@@ -4,7 +4,7 @@
 	<!-- 注意：1. BaseResultMap 与底层架构有关,除数据库变更.严禁人为修改. -->
 	<resultMap id="BaseResultMap"  type="com.xxwl.tk.main.entity.GroupEntity">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="gruopname" property="gruopname" jdbcType="VARCHAR" />
+		<result column="groupname" property="groupname" jdbcType="VARCHAR" />
 		<result column="shorthand" property="shorthand" jdbcType="VARCHAR" />
 		<result column="cuid" property="cuid" jdbcType="INTEGER" />
 		<result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
@@ -14,12 +14,12 @@
 	</resultMap>
 
 	<sql id="allColumn">
-		id,gruopname,shorthand,cuid,cdate,changeuid,changedate,isvoid
+		id,groupname,shorthand,cuid,cdate,changeuid,changedate,isvoid
 	</sql>
 
 	<insert id="doAdd"  parameterType="com.xxwl.tk.main.entity.GroupEntity" >
-    	 insert into group ( 
- <if test="null != gruopname"  >gruopname,</if>
+    	 insert into `group` ( 
+ <if test="null != groupname"  >groupname,</if>
 <if test="null != shorthand"  >shorthand,</if>
 <if test="null != cuid"  >cuid,</if>
 <if test="null != cdate"  >cdate,</if>
@@ -27,7 +27,7 @@
 <if test="null != changedate"  >changedate,</if>
  
  isvoid) values ( 
-<if test="null != gruopname"  >#{gruopname},</if>
+<if test="null != groupname"  >#{groupname},</if>
 <if test="null != shorthand"  >#{shorthand},</if>
 <if test="null != cuid"  >#{cuid},</if>
 <if test="null != cdate"  >#{cdate},</if>
@@ -38,9 +38,9 @@
   	</insert>
   	
 	<insert id="doAddBatch"  parameterType="java.util.List" >
-    	insert into group (
-					<if test="null != e.gruopname"  >
-						 gruopname,
+    	insert into `group` (
+					<if test="null != e.groupname"  >
+						 groupname,
 					</if>
 					<if test="null != e.shorthand"  >
 						 shorthand,
@@ -62,8 +62,8 @@
 		 <foreach collection="list" item="item" index="index"  separator=",">
 				(
 
-						<if test="null != item.gruopname"  >
-						 	#{item.gruopname},
+						<if test="null != item.groupname"  >
+						 	#{item.groupname},
 						</if>
 
 						<if test="null != item.shorthand"  >
@@ -94,10 +94,10 @@
   	
 	<update id="doUpdate"   parameterType="com.xxwl.tk.main.entity.GroupEntity" >
 	    update 
-	    	group
+	    	`group`
 	    <set>
-					<if test="null != gruopname"  >
-						 gruopname = #{gruopname,jdbcType=VARCHAR},
+					<if test="null != groupname"  >
+						 groupname = #{groupname,jdbcType=VARCHAR},
 					</if>
 					<if test="null != shorthand"  >
 						 shorthand = #{shorthand,jdbcType=VARCHAR},
@@ -126,7 +126,7 @@
      	
   	<delete id="doDelete"  >
   		delete  from 
-  			group
+  			`group`
 	  	<where> 
 	  		id 
 	  	=
@@ -136,7 +136,7 @@
     
   	<delete id="doDeletes"  parameterType="java.util.List" >
   		delete  from 
-  			group
+  			`group`
 	  	<where> 
 	  		id 
 	  	in 
@@ -148,7 +148,7 @@
     
     <update id="doRemove" parameterType="com.xxwl.tk.main.entity.GroupEntity"  >
     	update 
-    		group
+    		`group`
     	set isvoid = 0
 	    <if test="changeuid != null" >
 	      ,changeuid = #{changeuid}
@@ -170,7 +170,7 @@
 	    select
       		<include refid="allColumn" />
       	from 
-      		group
+      		`group`
 	    <where>
 		    id = #{id}
 		</where>
@@ -180,7 +180,7 @@
 	  	select
       		<include refid="allColumn" />
       	from 
-      		group
+      		`group`
 	  	<where> 
 	  		id 
 	  	in 
@@ -191,7 +191,7 @@
   	</select>
   
    <select id="getCount" resultType="java.lang.Long">
-      select count(*) from group
+      select count(*) from `group`
       <if test="_parameter != null">
           <include refid="sqlCriCondition"/>
       </if>
@@ -200,7 +200,7 @@
   <select id="queryForList" resultMap="BaseResultMap">
       select
       <include refid="allColumn" />
-      from group
+      from `group`
       <if test="_parameter != null">
         <include refid="sqlCriCondition"/>
         <include refid="sortSql"/>
@@ -211,7 +211,7 @@
   <select id="queryForPageList" resultMap="BaseResultMap">
       select
       <include refid="allColumn" />
-      from group
+      from `group`
       <if test="_parameter != null">
         <include refid="sqlCriCondition"/>
         <include refid="sortSql"/>
@@ -228,8 +228,8 @@
 		<if test="null != id">
 			AND id = #{id,jdbcType=INTEGER}
 		</if>	
-		<if test="null != gruopname and gruopname != ''">
-			AND gruopname LIKE CONCAT('%', #{gruopname,jdbcType=VARCHAR}, '%')
+		<if test="null != groupname and groupname != ''">
+			AND groupname LIKE CONCAT('%', #{groupname,jdbcType=VARCHAR}, '%')
 		</if>
 		<if test="null != shorthand and shorthand != ''">
 			AND shorthand LIKE CONCAT('%', #{shorthand,jdbcType=VARCHAR}, '%')
@@ -261,8 +261,8 @@
             <otherwise>
                 <foreach collection="sortItemMap.keySet()" item="field" separator=",">
                     <choose>
-						<when test="field == 'gruopname'">
-			                 gruopname ${sortItemMap.gruopname}
+						<when test="field == 'groupname'">
+			                 groupname ${sortItemMap.groupname}
 			            </when>
 						<when test="field == 'shorthand'">
 			                 shorthand ${sortItemMap.shorthand}

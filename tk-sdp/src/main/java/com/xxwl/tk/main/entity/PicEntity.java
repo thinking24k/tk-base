@@ -58,8 +58,8 @@ public class PicEntity extends BaseEntity implements Serializable {
 	@Column(name = "click")
 	private Integer click;
 	//组
-	@Column(name = "gruopid")
-	private Integer gruopid;
+	@Column(name = "groupid")
+	private Integer groupid;
 	
 	/**主键*/
 	public Integer getId() {
@@ -118,12 +118,12 @@ public class PicEntity extends BaseEntity implements Serializable {
 		this.click = click;
 	}
 	/**组*/
-	public Integer getGruopid() {
-		return gruopid;
+	public Integer getGroupid() {
+		return groupid;
 	}
 	/**组*/
-	public void setGruopid(Integer gruopid) {
-		this.gruopid = gruopid;
+	public void setGroupid(Integer groupid) {
+		this.groupid = groupid;
 	}
 	
 	public String getMD5() {
@@ -137,7 +137,7 @@ public class PicEntity extends BaseEntity implements Serializable {
 		return "PicEntity [id=" + id + ", logicname=" + logicname + ", title="
 				+ title + ", path=" + path + ", priority=" + priority
 				+ ", lable=" + lable + ", mD5=" + mD5 + ", click=" + click
-				+ ", gruopid=" + gruopid + "]";
+				+ ", groupid=" + groupid + "]";
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.xxwl.tk.main.web.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 import com.xxwl.tk.attachment.service.AttachmentService;
 import com.xxwl.tk.attachment.utils.AttachmentUtil;
 import com.xxwl.tk.framework.attribute.MessageAttribute;
@@ -23,7 +25,9 @@ import com.xxwl.tk.framework.page.Criteria;
 import com.xxwl.tk.framework.page.PageBean;
 import com.xxwl.tk.framework.utils.StringUtil;
 import com.xxwl.tk.framework.web.conttroller.BaseController;
+import com.xxwl.tk.framework.web.security.LocalSession;
 import com.xxwl.tk.main.entity.PicEntity;
+import com.xxwl.tk.main.entity.model.MainPageModel;
 import com.xxwl.tk.main.service.PicService;
 
 /** 
@@ -235,6 +239,14 @@ public class PicController extends BaseController {
 		//查询条件
 		List<PicEntity> picEntityList = picService.queryForList(picCriteria);
 		return this.responseData(true, picEntityList,MessageAttribute.COMMON_SELECT_VAL_SUC);				
+	}		
+	@RequestMapping(value="/querymain",method = RequestMethod.POST)
+	public @ResponseBody MessageDTO queryMainPageData() {
+		// 1.服务器获取用户信息获取推荐组
+		User u=null;
+		//查询条件
+		List<MainPageModel> mainPageModels = picService.queryMainPageData(u);
+		return this.responseData(true, mainPageModels,MessageAttribute.COMMON_SELECT_VAL_SUC);				
 	}		
 
     

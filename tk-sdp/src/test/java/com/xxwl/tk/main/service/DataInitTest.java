@@ -48,7 +48,7 @@ public class DataInitTest {
 				}
 				File file2 = listFiles[i];
 				PicEntity e = saveFile(localSave, inImgsSet, lists, file2);
-				e.setGruopid(i%5<=0?1:i%5);
+				e.setGroupid(i%5<=0?1:i%5);
 				System.out.println(e);
 				lists.add(e);
 			}
